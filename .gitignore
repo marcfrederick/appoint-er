@@ -5,9 +5,11 @@
 /vendor
 .env
 .env.backup
+.phpstorm.meta.php
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
 composer.phar
+_ide_helper.php
