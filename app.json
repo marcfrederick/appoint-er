@@ -1,0 +1,33 @@
+{
+    "name": "appoint.er",
+    "repository": "https://github.com/appoint-er/htwg-web-tech-dynamic",
+    "addons": [
+        {
+            "plan": "heroku-postgresql:hobby-dev",
+            "as": "DATABASE",
+            "options": {
+                "version": "12"
+            }
+        }
+    ],
+    "buildpacks": [
+        {
+            "url": "heroku/php"
+        }
+    ],
+    "env": {
+        "APP_DEBUG": {
+            "description": "Toggle laravel debug mode",
+            "required": "false",
+            "value": "true"
+        },
+        "APP_KEY": {
+            "description": "Secret to use when encrypting cookies, ...; REPLACE ME BEFORE SETUP",
+            "value": "base64:9ZXch2Sq5eiltFnS8l8ErgetgsWe5ldOZwEzQHnajXw="
+        },
+        "DB_CONNECTION": {
+            "description": "Which database config to use",
+            "value": "pgsql"
+        }
+    }
+}
