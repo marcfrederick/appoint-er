@@ -1,11 +1,15 @@
 // Fonts
 $font-family-sans-serif: 'Roboto', sans-serif;
 
-// Body
-$body-bg: #f8f9fa;
-$body-color: #012133;
-
 // Colors
 $dark: #012133;
+$light: #f8f9fa;
 $primary: #407076;
 $warning: #a31621;
+
+// Style
+$enable-gradients: true;
+
+// Body
+$body-color: $dark;
+$body-bg: $light;
