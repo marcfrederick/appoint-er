@@ -10933,6 +10933,10 @@ a.text-dark:focus {
   }
 }
 
+body {
+  margin-top: 56px;
+}
+
 h1,
 h2,
 h3,

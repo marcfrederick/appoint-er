@@ -1,100 +1,62 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+    <div class="jumbotron jumbotron-fluid bg-primary text-light">
+        <div class="container">
+            <h1 class="display-4 site-logo">appoint<span class="text-danger">.</span>er</h1>
+            <p class="lead">Das Terminvermittlungsportal für den modernen Alltag.</p>
+        </div>
+    </div>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <div id="page-content" class="container">
+        <p class="lead">
+            Als Terminvermittlungsportal für den modernen Alltag ist es unsere Aufgabe Termine schnell und unkompliziert
+            zu vermitteln.
+            Suchen Sie nach Terminen für eine Kategorie oder einen spezifischen Anbieter und buchen Sie diesen direkt
+            hier online.
+        </p>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+        <div class="about-us mt-5">
+            <h2>Über uns</h2>
+            <!-- Graphics from https://undraw.co -->
+            <div class="row align-items-center text-center">
+                <div class="col-sm-4 order-sm-2">
+                    <img src="img/search.svg" alt="Woman with a magnifying glass" class="img-fluid">
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <p class="col-sm-8 order-sm-1 lead">
+                    Finden Sie schneller einen Termin indem Sie verschiedene Anbieter vergleichen
+                </p>
+            </div>
+            <div class="row align-items-center text-center">
+                <div class="col-sm-4 order-sm-1">
+                    <img src="img/time.svg" alt="Woman sitting on the hand of a clock" class="img-fluid">
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <p class="col-sm-8 order-sm-2 lead">
+                    Sparen Sie Zeit, indem Sie Warteschleifen vermeiden
+                </p>
+            </div>
+            <div class="row align-items-center text-center">
+                <div class="col-sm-4 order-sm-2">
+                    <img src="img/calendar.svg" alt="Woman standing in front of a calendar" class="img-fluid">
                 </div>
+                <p class="col-sm-8 order-sm-1 lead">
+                    Wählen Sie einen Termin der <em>Ihnen</em> passt
+                </p>
             </div>
         </div>
-    </body>
-</html>
+
+        <div class="testimonials mt-5">
+            <h2>Testimonials</h2>
+
+            <blockquote class="blockquote">
+                <p class="mb-0">Durch <em>appoint.er</em> spart mein Sekratariat so viel Zeit, dass ich einen
+                    Mitarbeiter entlassen konnte!</p>
+                <footer class="blockquote-footer">Marin Aigl, Arzt</footer>
+            </blockquote>
+
+            <blockquote class="blockquote">
+                <p class="mb-0">Nach wochenlanger verzwifelter Suche haben ich endlich einen Arzttermin gefunden!</p>
+                <footer class="blockquote-footer">Robin Schrimpf. Student</footer>
+            </blockquote>
+        </div>
+@endsection
