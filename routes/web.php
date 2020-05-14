@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::view('/impressum', 'impressum');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

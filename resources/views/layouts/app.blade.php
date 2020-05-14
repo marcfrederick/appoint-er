@@ -73,8 +73,7 @@
         </main>
 
         <footer id="page-footer" class="container text-center">
-            {{-- create route and set href="{{ route('login') }} --}}
-            <div>&#169; appoint.er, <a href="#">Impressum</a></div>
+            <div>&#169; appoint.er, <a href="{{ url('impressum') }}">Impressum</a></div>
         </footer>
     </div>
 </body>
