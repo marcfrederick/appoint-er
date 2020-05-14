@@ -75,6 +75,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer id="page-footer" class="container text-center">
+            {{-- create route and set href="{{ route('login') }} --}}
+            <div>&#169; appoint.er, <a href="#">Impressum</a></div>
+        </footer>
     </div>
 </body>
 </html>
