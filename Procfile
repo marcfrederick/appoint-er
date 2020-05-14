@@ -1,2 +1,2 @@
 web: vendor/bin/heroku-php-apache2 public/
-release: php artisan migrate --verbose --force --no-interaction
+release: php artisan migrate --force --seed --no-interaction
