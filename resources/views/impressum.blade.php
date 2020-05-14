@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container py-4">
         <h1>Impressum</h1>
         <div class="lead">
             Angaben gemäß § 5 TMG
