@@ -59,4 +59,32 @@
                 <footer class="blockquote-footer">Robin Schrimpf. Student</footer>
             </blockquote>
         </div>
+
+        <div class="offers mt-5">
+            <h2>Angebote</h2>
+
+            <div class="input-group mt-4 mb-4">
+                <input type="text" class="form-control" placeholder="Suche..." aria-label="search-term"
+                       aria-describedby="button-search">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="button" id="button-search">Suchen</button>
+                </div>
+            </div>
+
+            <div class="card-columns">
+                @foreach(App\Location::orderBy('updated_at', 'desc')->take(10)->get() as $location)
+                    <div class="card">
+                        <!-- TODO: Add images, probably can just use a default -->
+                        <!-- <img class="card-img-top" src="images/wr1.jpeg" alt="an offer image"> -->
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $location->title }}</h5>
+                            <p class="card-text">{{ $location->description }}</p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a class="btn btn-outline-primary" data-toggle="modal"
+                               data-target="#bookingNotImplementedModal">Termin Vereinbaren</a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
 @endsection
