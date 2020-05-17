@@ -5,6 +5,12 @@
         <h1 class="display-4">{{ $location->title  }}</h1>
         <p class="lead">{{ $location->description }}</p>
 
+        <h2>Owner</h2>
+        <ul class="list-unstyled">
+            <li>{{ $location->user->name }}</li>
+            <li>{{ $location->user->email }}</li>
+        </ul>
+
         <h2>Address</h2>
         <ul class="list-unstyled">
             <li>{{ $location->address->street }}</li>

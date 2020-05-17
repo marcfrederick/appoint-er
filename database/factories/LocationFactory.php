@@ -10,6 +10,7 @@ $factory->define(Location::class, function (Faker $faker) {
     return [
         'title' => $faker->company,
         'description' => $faker->realText(250),
-        'address_id' => factory(App\Address::class)
+        'address_id' => factory(App\Address::class),
+        'user_id' => \factory(App\User::class)
     ];
 });

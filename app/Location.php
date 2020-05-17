@@ -10,4 +10,9 @@ class Location extends Model
     {
         return $this->belongsTo('App\Address');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
