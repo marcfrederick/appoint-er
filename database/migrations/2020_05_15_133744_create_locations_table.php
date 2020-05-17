@@ -18,7 +18,7 @@ class CreateLocationsTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->text('description');
-            $table->foreignId('address')->references('id')->on('addresses');
+            $table->foreignId('address_id')->references('id')->on('addresses');
         });
     }
 

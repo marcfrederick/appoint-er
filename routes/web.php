@@ -22,3 +22,5 @@ Route::view('/imprint', 'imprint');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('location/{id}', 'LocationController@show');
