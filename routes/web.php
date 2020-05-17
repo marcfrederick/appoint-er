@@ -23,4 +23,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('location/{id}', 'LocationController@show');
+Route::get('location/{id}', 'LocationController@single');
+
+Route::get('locations', 'locationController@all');

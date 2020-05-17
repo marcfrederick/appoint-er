@@ -15,8 +15,13 @@ class LocationController extends Controller
      * @param int $id
      * @return Application|Factory|View
      */
-    public function show($id)
+    public function single($id)
     {
-        return view('location.show', ['location' => Location::findOrFail($id)]);
+        return view('location.single', ['location' => Location::findOrFail($id)]);
+    }
+
+    public function all()
+    {
+        return view('location.all', ['locations' => Location::orderBy('updated_at', 'desc')->get()]);
     }
 }
