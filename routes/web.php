@@ -25,4 +25,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('location/{id}', 'LocationController@single');
 
-Route::get('locations', 'locationController@all');
+Route::get('locations', 'LocationController@all');
+
+Route::get('user/{id}', 'ProfileController@show');
