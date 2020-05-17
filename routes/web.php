@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/impressum', 'impressum');
+Route::view('/imprint', 'imprint');
 
 Auth::routes();
 

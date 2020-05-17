@@ -73,7 +73,7 @@
         </main>
 
         <footer id="page-footer" class="container text-center">
-            <div>&#169; appoint.er, <a href="{{ url('impressum') }}">Impressum</a></div>
+            <div>&#169; appoint.er, <a href="{{ url('imprint') }}">{{ __('imprint.title') }}</a></div>
         </footer>
     </div>
 
