@@ -101,9 +101,14 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="country" type="text"
-                                           class="form-control @error('country') is-invalid @enderror" name="country"
-                                           value="{{ old('country') }}" required autocomplete="country">
+
+                                    <select id="country" type="text"
+                                            class="form-control @error('country') is-invalid @enderror" name="country"
+                                            required autocomplete="country">
+                                        @foreach($countryCodes as $code => $name)
+                                            <option value="{{ $code }}">{{ $name }}</option>
+                                        @endforeach
+                                    </select>
 
                                     @error('country')
                                         <span class="invalid-feedback" role="alert">
