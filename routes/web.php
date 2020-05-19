@@ -23,8 +23,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('location/{id}', 'LocationController@single');
+Route::get('/location/{id}', 'LocationController@single');
+Route::get('/locations', 'LocationController@all');
+Route::view('/create', 'create');
+Route::post('/create', 'LocationController@create')->name('create');
 
-Route::get('locations', 'LocationController@all');
-
-Route::get('user/{id}', 'ProfileController@show');
+Route::get('/user/{id}', 'ProfileController@show');
