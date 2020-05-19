@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
 
@@ -23,9 +24,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/location/{id}', 'LocationController@single');
-Route::get('/locations', 'LocationController@all');
-Route::view('/create', 'create');
-Route::post('/create', 'LocationController@create')->name('create');
+// Locations
+Route::get('/location/{id}', 'Location\DetailController@show');
+Route::get('/locations', 'Location\ListController@show');
+Route::get('/create', 'Location\CreateController@showCreationForm')->name('create');
+Route::post('/create', 'Location\CreateController@create');
 
 Route::get('/profile/{id}', 'ProfileController@show')->name('profile');

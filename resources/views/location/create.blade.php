@@ -16,8 +16,14 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="title" type="text" class="form-control" name="title"
+                                    <input id="title" type="text"
+                                           class="form-control @error('title') is-invalid @enderror" name="title"
                                            value="{{ old('title') }}" required autocomplete="title" autofocus>
+                                    @error('title')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -26,8 +32,16 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="description" type="text" class="form-control" name="description"
-                                           value="{{ old('description') }}" required autocomplete="description">
+                                    <input id="description" type="text"
+                                           class="form-control @error('description') is-invalid @enderror"
+                                           name="description" value="{{ old('description') }}" required
+                                           autocomplete="description">
+
+                                    @error('description')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -36,8 +50,15 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('Street') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="street" type="text" class="form-control" name="street"
+                                    <input id="street" type="text"
+                                           class="form-control @error('street') is-invalid @enderror" name="street"
                                            value="{{ old('street') }}" required autocomplete="street">
+
+                                    @error('street')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -46,8 +67,15 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('Postcode') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="postcode" type="text" class="form-control" name="postcode"
+                                    <input id="postcode" type="text"
+                                           class="form-control @error('postcode') is-invalid @enderror" name="postcode"
                                            value="{{ old('postcode') }}" required autocomplete="postcode">
+
+                                    @error('postcode')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -56,8 +84,15 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="city" type="text" class="form-control" name="city"
-                                           value="{{ old('city') }}" required autocomplete="city">
+                                    <input id="city" type="text"
+                                           class="form-control @error('city') is-invalid @enderror"
+                                           name="city" value="{{ old('city') }}" required autocomplete="city">
+
+                                    @error('city')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -66,8 +101,15 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="country" type="text" class="form-control" name="country"
+                                    <input id="country" type="text"
+                                           class="form-control @error('country') is-invalid @enderror" name="country"
                                            value="{{ old('country') }}" required autocomplete="country">
+
+                                    @error('country')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 

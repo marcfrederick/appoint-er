@@ -37,7 +37,7 @@
 
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/create') }}">{{ __('Create') }}</a>
+                                <a class="nav-link" href="{{ route('create') }}">{{ __('Create') }}</a>
                             </li>
                         @endauth
                     </ul>
