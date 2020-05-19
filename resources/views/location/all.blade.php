@@ -7,7 +7,12 @@
             @foreach($locations as $l)
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ url('location', $l->id) }}" class="card-title font-weight-bold">{{ $l->title  }}</a>
+                        <a href="{{ url('location', $l->id) }}" class="card-title font-weight-bold">
+                            {{ $l->title  }}
+                            @if($l->updated_at->isCurrentWeek())
+                                <span class="badge badge-primary">{{ __('Recently updated') }}</span>
+                            @endif
+                        </a>
                         <p class="card-text">{{ $l->description  }}</p>
                     </div>
                 </div>

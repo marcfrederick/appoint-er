@@ -26,7 +26,7 @@ class LocationController extends Controller
      */
     public function all()
     {
-        return view('location.all', ['locations' => Location::orderBy('updated_at', 'desc')->get()]);
+        return view('location.all', ['locations' => Location::orderBy('title')->get()]);
     }
 
     /**
