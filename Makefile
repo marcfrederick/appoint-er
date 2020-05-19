@@ -1,4 +1,4 @@
-.PHONY: refresh-db sass serve
+.PHONY: refresh-db sass serve test
 
 refresh-db:
 	php artisan migrate:fresh --seed
@@ -8,3 +8,6 @@ sass:
 
 serve: sass
 	php artisan serve
+
+test:
+	vendor/bin/phpunit
