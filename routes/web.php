@@ -28,4 +28,4 @@ Route::get('/locations', 'LocationController@all');
 Route::view('/create', 'create');
 Route::post('/create', 'LocationController@create')->name('create');
 
-Route::get('/user/{id}', 'ProfileController@show');
+Route::get('/profile/{id}', 'ProfileController@show')->name('profile');

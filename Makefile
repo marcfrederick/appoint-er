@@ -6,7 +6,7 @@ refresh-db:
 sass:
 	npm run dev
 
-serve: sass
+serve:
 	php artisan serve
 
 test:
