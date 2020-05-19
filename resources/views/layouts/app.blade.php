@@ -34,12 +34,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/locations') }}">{{ __('Locations') }}</a>
                         </li>
-
-                        @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('create') }}">{{ __('Create') }}</a>
-                            </li>
-                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -63,6 +57,10 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('profile', Auth::user()) }}">
                                         {{ __('Profile') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('create') }}">
+                                        {{ __('New location') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
