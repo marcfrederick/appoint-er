@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
+    protected $fillable = [
+        'title', 'description', 'address_id', 'user_id'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

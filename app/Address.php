@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
+    protected $fillable = [
+        'street', 'postcode', 'city', 'country'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
