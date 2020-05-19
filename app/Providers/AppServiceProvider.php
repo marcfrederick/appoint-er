@@ -8,6 +8,8 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public static $defaultStringLength = 191;
+
     /**
      * Register any application services.
      *
@@ -25,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
+        Schema::defaultStringLength(self::$defaultStringLength);
     }
 }

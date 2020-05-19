@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Location;
 use App\Address;
 use App\Http\Controllers\Controller;
 use App\Location;
+use App\Providers\AppServiceProvider;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -309,12 +310,13 @@ class CreateController extends Controller
      */
     protected function validator($data)
     {
+        $stringLength = AppServiceProvider::$defaultStringLength;
         return Validator::make($data, [
-            'title' => ['required', 'string', 'max:255'],
+            'title' => ['required', 'string', "max:{$stringLength}"],
             'description' => ['required', 'string'],
-            'street' => ['required', 'string'],
-            'postcode' => ['required', 'string'],
-            'city' => ['required', 'string'],
+            'street' => ['required', 'string', "max:{$stringLength}"],
+            'postcode' => ['required', 'string', "max:{$stringLength}"],
+            'city' => ['required', 'string', "max:{$stringLength}"],
             'country' => ['required', 'string', 'size:3'],
         ]);
     }
