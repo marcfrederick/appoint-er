@@ -2,7 +2,7 @@
     <!-- TODO: Add images, probably can just use a default -->
     <!-- <img class="card-img-top" src="images/wr1.jpeg" alt="an offer image"> -->
     <div class="card-body">
-        <a href="{{ url('locations', $location->id) }}" class="card-title">{{ $location->title }}</a>
+        <a href="{{ route('locations.detail', $location->id) }}" class="card-title">{{ $location->title }}</a>
         <p class="card-text">{{ $location->description }}</p>
     </div>
     <div class="card-footer text-center">

@@ -19,13 +19,24 @@ Auth::routes();
 
 // Misc routes
 Route::get('/', 'IndexController@show');
-Route::view('/imprint', 'imprint');
+Route::view('/imprint', 'imprint')->name('imprint');
 
 // Location routes
-Route::get('/locations/{id}', 'Location\DetailController@show');
-Route::get('/locations', 'Location\ListController@show');
-Route::get('/create', 'Location\CreateController@showCreationForm')->name('create');
-Route::post('/create', 'Location\CreateController@store');
+Route::prefix('/locations')->name('locations.')->group(function () {
+    Route::get('/', 'Location\ListController@show')
+        ->name('list');
+    Route::get('/detail/{id}', 'Location\DetailController@show')
+        ->name('detail');
+    Route::get('/create', 'Location\CreateController@showCreationForm')
+        ->middleware('auth')
+        ->name('create');
+    Route::post('/create', 'Location\CreateController@store')
+        ->middleware('auth')
+        ->name('store');
+});
 
 // Profile routes
-Route::get('/profiles/{id}', 'ProfileController@show')->name('profile');
+Route::prefix('/users')->name('users.')->group(function () {
+    Route::get('/detail/{id}', 'ProfileController@show')
+        ->name('detail');
+});

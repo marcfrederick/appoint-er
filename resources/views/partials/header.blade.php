@@ -12,7 +12,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/locations') }}">{{ __('Locations') }}</a>
+                    <a class="nav-link" href="{{ route('locations.list') }}">{{ __('Locations') }}</a>
                 </li>
             </ul>
 
@@ -36,11 +36,11 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('profile', Auth::user()) }}">
+                            <a class="dropdown-item" href="{{ route('users.detail', Auth::user()) }}">
                                 {{ __('Profile') }}
                             </a>
 
-                            <a class="dropdown-item" href="{{ route('create') }}">
+                            <a class="dropdown-item" href="{{ route('locations.create') }}">
                                 {{ __('New location') }}
                             </a>
 
