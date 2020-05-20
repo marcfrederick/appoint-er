@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -19,5 +20,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'role' => 'admin'
         ]);
+        factory(\App\User::class, 50)->create();
     }
 }

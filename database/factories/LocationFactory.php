@@ -17,6 +17,6 @@ $factory->define(Location::class, function (Faker $faker) {
         'title' => $faker->company,
         'description' => $faker->realText(250),
         'address_id' => factory(App\Address::class),
-        'user_id' => \factory(App\User::class)
+        'user_id' => \App\User::inRandomOrder()->first(),
     ];
 });
