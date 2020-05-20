@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Location\CreateRequest;
 use App\Location;
 use App\Providers\RouteServiceProvider;
+use App\Tag;
 
 class CreateController extends Controller
 {
@@ -284,7 +285,7 @@ class CreateController extends Controller
     protected function store(CreateRequest $request)
     {
         $data = $request->all();
-        Location::create([
+        $location = Location::create([
             'title' => $data['title'],
             'description' => $data['description'],
             'address_id' => Address::create([
@@ -295,6 +296,13 @@ class CreateController extends Controller
             ])->id,
             'user_id' => $request->user()->id,
         ]);
+
+        foreach ($data['tags'] as $tag) {
+            Tag::create([
+                'name' => $tag,
+                'location_id' => $location->id,
+            ]);
+        }
 
         return redirect($this->redirectTo);
     }

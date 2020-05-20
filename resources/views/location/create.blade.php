@@ -49,6 +49,24 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="tags" class="col-md-4 col-form-label text-md-right">
+                                    {{ __('Tags') }} ({{ __('comma separated') }})
+                                </label>
+
+                                <div class="col-md-6">
+                                    <input id="city" type="text"
+                                           class="form-control @error('tags') is-invalid @enderror"
+                                           name="tags" value="{{ old('tags') }}" required autocomplete="tags">
+
+                                    @error('tags')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="street"
                                        class="col-md-4 col-form-label text-md-right">{{ __('Street') }}</label>
 

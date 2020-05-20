@@ -20,6 +20,16 @@ class CreateRequest extends FormRequest
     }
 
     /**
+     * @return void
+     */
+    public function prepareForValidation()
+    {
+        // Convert the comma separated tags into an array.
+        // FIXME: This probably isn't the right place for this piece of logic.
+        $this->merge(['tags' => array_map('trim', explode(',', $this->tags))]);
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -30,6 +40,7 @@ class CreateRequest extends FormRequest
         return [
             'title' => ['required', 'string', "max:{$stringLength}"],
             'description' => ['required', 'string'],
+            'tags' => ['array'],
             'street' => ['required', 'string', "max:{$stringLength}"],
             'postcode' => ['required', 'string', "max:{$stringLength}"],
             'city' => ['required', 'string', "max:{$stringLength}"],
