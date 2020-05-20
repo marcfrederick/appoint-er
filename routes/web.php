@@ -26,6 +26,6 @@ Auth::routes();
 Route::get('/location/{id}', 'Location\DetailController@show');
 Route::get('/locations', 'Location\ListController@show');
 Route::get('/create', 'Location\CreateController@showCreationForm')->name('create');
-Route::post('/create', 'Location\CreateController@create');
+Route::post('/create', 'Location\CreateController@store');
 
 Route::get('/profile/{id}', 'ProfileController@show')->name('profile');

@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Location;
 
 use App\Address;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Location\CreateRequest;
 use App\Location;
-use App\Providers\AppServiceProvider;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Validator;
 
 class CreateController extends Controller
 {
@@ -277,16 +275,14 @@ class CreateController extends Controller
     }
 
     /**
-     * Creates a new location instance.
+     * Creates and stores a new location instance.
      *
-     * @param \Illuminate\Support\Facades\Request $request
+     * @param \App\Http\Requests\Location\CreateRequest $request
      * @return \Illuminate\Routing\Redirector
      */
-    protected function create(Request $request)
+    protected function store(CreateRequest $request)
     {
         $data = $request::all();
-        $this->validator($data)->validate();
-
         Location::create([
             'title' => $data['title'],
             'description' => $data['description'],
@@ -300,24 +296,5 @@ class CreateController extends Controller
         ]);
 
         return redirect($this->redirectTo);
-    }
-
-    /**
-     * Retrieves a validator for the incoming data.
-     *
-     * @param array $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator($data)
-    {
-        $stringLength = AppServiceProvider::$defaultStringLength;
-        return Validator::make($data, [
-            'title' => ['required', 'string', "max:{$stringLength}"],
-            'description' => ['required', 'string'],
-            'street' => ['required', 'string', "max:{$stringLength}"],
-            'postcode' => ['required', 'string', "max:{$stringLength}"],
-            'city' => ['required', 'string', "max:{$stringLength}"],
-            'country' => ['required', 'string', 'size:3'],
-        ]);
     }
 }
