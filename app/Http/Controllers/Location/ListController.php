@@ -16,7 +16,7 @@ class ListController extends Controller
     protected function search(Request $request)
     {
         $query = $request::input('query');
-        $locations = Location::where('title', 'LIKE', "%{$query}%")
+        $locations = Location::whereRaw(sprintf("UPPER(title) LIKE '%%%s%%'", strtoupper($query)))
             ->paginate();
 
         return view('location.list', ['locations' => $locations]);
