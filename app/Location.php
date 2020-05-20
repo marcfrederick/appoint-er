@@ -26,4 +26,15 @@ class Location extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * @param $number
+     * @return \Illuminate\Support\Collection
+     */
+    public function getRecentlyUpdated($number)
+    {
+        return $this->orderBy('updated_at', 'desc')
+            ->take($number)
+            ->get();
+    }
 }

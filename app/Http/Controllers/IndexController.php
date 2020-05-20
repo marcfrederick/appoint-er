@@ -13,14 +13,22 @@ class IndexController extends Controller
     protected $numberOfIndexListings = 15;
 
     /**
+     * @var Location
+     */
+    protected $location;
+
+    public function __construct(Location $location)
+    {
+        $this->location = $location;
+    }
+
+    /**
      * @return \Illuminate\View\View
      */
     protected function show()
     {
-        $locations = Location::orderBy('updated_at', 'desc')
-            ->take($this->numberOfIndexListings)
-            ->get();
-
-        return view('index', ['locations' => $locations]);
+        return view('index', [
+            'locations' => $this->location->getRecentlyUpdated($this->numberOfIndexListings)
+        ]);
     }
 }
