@@ -1,9 +1,9 @@
-.PHONY: refresh-db sass serve test
+.PHONY: refresh-db mix serve test
 
 refresh-db:
 	php artisan migrate:fresh --seed
 
-sass:
+mix:
 	npm run dev
 
 serve:
