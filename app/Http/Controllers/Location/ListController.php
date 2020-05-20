@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Location;
 
@@ -12,6 +13,8 @@ class ListController extends Controller
      */
     protected function show()
     {
-        return view('location.list', ['locations' => Location::orderBy('title')->get()]);
+        $locations = Location::orderBy('title')->paginate();
+
+        return view('location.list', ['locations' => $locations]);
     }
 }

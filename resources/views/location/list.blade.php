@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<?php /** @var \App\Location[] $locations */ ?>
+<?php /** @var \Illuminate\Contracts\Pagination\LengthAwarePaginator $locations */ ?>
 
 @section('content')
     <div class="container py-4">
@@ -20,5 +20,6 @@
                 </div>
             @endforeach
         </ul>
+        {{ $locations->links() }}
     </div>
 @endsection
