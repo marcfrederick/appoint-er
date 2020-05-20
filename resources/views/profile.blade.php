@@ -8,11 +8,9 @@
 
         @if($user->locations->isNotEmpty())
             <h2>{{ __('Listings by this user') }}</h2>
-            <ul>
-                @foreach($user->locations as $location)
-                    <li>{{ $location }}</li>
-                @endforeach
-            </ul>
+            <div class="card-columns">
+                @each('partials.location-card', $user->locations, 'location')
+            </div>
         @endif
     </div>
 @endsection
