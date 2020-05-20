@@ -20,5 +20,12 @@
             <li>{{ $location->address->postcode }}</li>
             <li>{{ $location->address->country }}</li>
         </ul>
+
+        @if($location->tags->isNotEmpty())
+            <h2>Tags</h2>
+            @foreach($location->tags as $tag)
+                <span class="badge badge-primary">{{ $tag->name }}</span>
+            @endforeach
+        @endif
     </div>
 @endsection
