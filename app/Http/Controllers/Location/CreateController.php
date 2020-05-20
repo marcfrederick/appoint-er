@@ -7,10 +7,11 @@ use App\Address;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Location\CreateRequest;
 use App\Location;
+use App\Providers\RouteServiceProvider;
 
 class CreateController extends Controller
 {
-    protected $redirectTo = '/';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     protected $countryCodes = [
         'AFG' => 'Afghanistan',
