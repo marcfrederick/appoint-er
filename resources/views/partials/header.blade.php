@@ -18,6 +18,12 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+                <form action="{{ route('locations.search') }}" method="GET" class="input-group mb-3">
+                    <input id="query" name="query" type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-append">
+                        <button type="submit" class="input-group-text">{{ __('Search') }}</button>
+                    </div>
+                </form>
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">

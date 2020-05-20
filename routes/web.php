@@ -23,6 +23,8 @@ Route::view('/imprint', 'imprint')->name('imprint');
 
 // Location routes
 Route::prefix('/locations')->name('locations.')->group(function () {
+    Route::get('/search', 'Location\ListController@search')
+        ->name('search');
     Route::get('/', 'Location\ListController@show')
         ->name('list');
     Route::get('/detail/{id}', 'Location\DetailController@show')
