@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<?php /** @var \App\Location[] $locations */ ?>
+
 @section('content')
     <div class="jumbotron jumbotron-fluid bg-primary text-light">
         <div class="container">
@@ -66,7 +68,7 @@
             </div>
 
             <div class="card-columns">
-                @foreach(App\Location::orderBy('updated_at', 'desc')->take(10)->get() as $location)
+                @foreach($locations as $location)
                     <div class="card">
                         <!-- TODO: Add images, probably can just use a default -->
                         <!-- <img class="card-img-top" src="images/wr1.jpeg" alt="an offer image"> -->

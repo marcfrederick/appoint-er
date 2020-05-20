@@ -14,18 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::view('/imprint', 'imprint');
-
+// Auth routes
 Auth::routes();
 
-// Locations
+// Misc routes
+Route::get('/', 'IndexController@show');
+Route::view('/imprint', 'imprint');
+
+// Location routes
 Route::get('/location/{id}', 'Location\DetailController@show');
 Route::get('/locations', 'Location\ListController@show');
 Route::get('/create', 'Location\CreateController@showCreationForm')->name('create');
 Route::post('/create', 'Location\CreateController@store');
 
+// Profile routes
 Route::get('/profile/{id}', 'ProfileController@show')->name('profile');
