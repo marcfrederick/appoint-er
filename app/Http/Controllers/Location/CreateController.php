@@ -283,7 +283,7 @@ class CreateController extends Controller
      */
     protected function store(CreateRequest $request)
     {
-        $data = $request::all();
+        $data = $request->all();
         Location::create([
             'title' => $data['title'],
             'description' => $data['description'],
@@ -293,7 +293,7 @@ class CreateController extends Controller
                 'city' => $data['city'],
                 'country' => $data['country'],
             ])->id,
-            'user_id' => $request::user()->id,
+            'user_id' => $request->user()->id,
         ]);
 
         return redirect($this->redirectTo);
