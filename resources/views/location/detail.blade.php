@@ -6,7 +6,8 @@
     <div class="container py-4">
         @can('manage-location', $location)
             <div class="text-right">
-                <a class="btn btn-danger" href="{{ route('locations.delete', $location->id) }}" role="button">Delete</a>
+                <a class="btn btn-danger confirmable" href="{{ route('locations.delete', $location->id) }}"
+                   role="button" data-confirm="Are you sure you want to delete this location?">Delete</a>
             </div>
         @endcan
 
