@@ -7,12 +7,9 @@ use App\Address;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Location\CreateRequest;
 use App\Location;
-use App\Providers\RouteServiceProvider;
 
 class CreateController extends Controller
 {
-    protected $redirectTo = RouteServiceProvider::HOME;
-
     protected $countryCodes = [
         'AFG' => 'Afghanistan',
         'ALA' => 'Åland Islands',
@@ -284,7 +281,8 @@ class CreateController extends Controller
     protected function store(CreateRequest $request)
     {
         $data = $request->all();
-        Location::create([
+
+        $location = Location::create([
             'title' => $data['title'],
             'description' => $data['description'],
             'address_id' => Address::create([
@@ -296,6 +294,6 @@ class CreateController extends Controller
             'user_id' => $request->user()->id,
         ]);
 
-        return redirect($this->redirectTo);
+        return redirect(route('locations.detail', $location));
     }
 }
