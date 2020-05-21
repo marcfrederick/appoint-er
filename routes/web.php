@@ -22,7 +22,7 @@ Route::get('/', 'IndexController@show');
 Route::view('/imprint', 'imprint')->name('imprint');
 
 // locations
-Route::get('/search', 'LocationController@search')
+Route::get('/locations/search', 'LocationController@search')
     ->name('locations.search');
 Route::resource('locations', 'LocationController')
     ->except(['update', 'edit']);
