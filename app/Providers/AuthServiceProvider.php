@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // TODO: we should put this in a policy instead.
         Gate::define('manage-location', function (\App\User $user, \App\Location $location) {
-            return $user->id === $location->user_id;
+            return $user->id === $location->user_id || $user->isAdmin();
         });
     }
 }

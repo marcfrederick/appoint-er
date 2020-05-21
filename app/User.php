@@ -40,8 +40,13 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    function locations()
+    public function locations()
     {
         return $this->hasMany('App\Location');
+    }
+
+    public function isAdmin()
+    {
+        return $this->role == 'admin';
     }
 }
