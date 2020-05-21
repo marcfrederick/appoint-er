@@ -29,6 +29,9 @@ Route::prefix('/locations')->name('locations.')->group(function () {
         ->name('list');
     Route::get('/detail/{id}', 'Location\DetailController@show')
         ->name('detail');
+    Route::get('/detail/{id}/delete', 'Location\DetailController@delete')
+        ->middleware('password.confirm')
+        ->name('delete');
     Route::get('/create', 'Location\CreateController@showCreationForm')
         ->middleware('auth')
         ->name('create');

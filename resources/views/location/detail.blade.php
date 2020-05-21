@@ -4,6 +4,12 @@
 
 @section('content')
     <div class="container py-4">
+        @can('manage-location', $location)
+            <div class="text-right">
+                <a class="btn btn-danger" href="{{ route('locations.delete', $location->id) }}" role="button">Delete</a>
+            </div>
+        @endcan
+
         <h1 class="display-4">{{ $location->title  }}</h1>
         <p class="lead">{{ $location->description }}</p>
 
