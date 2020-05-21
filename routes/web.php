@@ -21,24 +21,11 @@ Auth::routes();
 Route::get('/', 'IndexController@show');
 Route::view('/imprint', 'imprint')->name('imprint');
 
-// Location routes
-Route::prefix('/locations')->name('locations.')->group(function () {
-    Route::get('/search', 'Location\ListController@search')
-        ->name('search');
-    Route::get('/', 'Location\ListController@show')
-        ->name('list');
-    Route::get('/detail/{id}', 'Location\DetailController@show')
-        ->name('detail');
-    Route::get('/detail/{id}/delete', 'Location\DetailController@delete')
-        ->middleware('password.confirm')
-        ->name('delete');
-    Route::get('/create', 'Location\CreateController@showCreationForm')
-        ->middleware('auth')
-        ->name('create');
-    Route::post('/create', 'Location\CreateController@store')
-        ->middleware('auth')
-        ->name('store');
-});
+// locations
+Route::get('/search', 'LocationController@search')
+    ->name('locations.search');
+Route::resource('locations', 'LocationController')
+    ->except(['update', 'edit']);
 
 // Profile routes
 Route::prefix('/users')->name('users.')->group(function () {

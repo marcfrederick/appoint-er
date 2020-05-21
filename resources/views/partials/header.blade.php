@@ -12,7 +12,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('locations.list') }}">{{ __('Locations') }}</a>
+                    <a class="nav-link" href="{{ route('locations.index') }}">{{ __('Locations') }}</a>
                 </li>
             </ul>
 
