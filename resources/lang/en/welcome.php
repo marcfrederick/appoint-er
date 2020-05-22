@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 return [
     'slogan' => 'The appointment portal for our modern times',
