@@ -262,6 +262,11 @@ class LocationController extends Controller
         'ZWE' => 'Zimbabwe',
     ];
 
+    public function __construct()
+    {
+        $this->authorizeResource(Location::class, 'location');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -314,23 +319,23 @@ class LocationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Location $location)
     {
         return response(view('location.detail', [
-            'location' => Location::findOrFail($id)
+            'location' => $location
         ]));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Location  $location
+     * @return void
      */
-    public function edit($id)
+    public function edit(Location $location)
     {
         //
     }
@@ -339,10 +344,10 @@ class LocationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Location  $location
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Location $location)
     {
         //
     }
@@ -350,14 +355,14 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Location  $location
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Location $location)
     {
-        $location = Location::findOrFail($id);
         $location->delete();
+
         return redirect(RouteServiceProvider::HOME);
     }
 
@@ -367,6 +372,7 @@ class LocationController extends Controller
      */
     public function search(Request $request)
     {
+        $this->authorize('viewAny', Location::class);
         $query = $request->input('query');
         $locations = Location::whereRaw("UPPER(title) LIKE '%".strtoupper($query)."%'")
             ->paginate();

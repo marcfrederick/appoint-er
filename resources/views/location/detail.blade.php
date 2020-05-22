@@ -4,17 +4,19 @@
 
 @section('content')
     <div class="container py-4">
-        @can('manage-location', $location)
+        @canany(['delete', 'update'], $location)
             <div class="text-right">
-                <form action="{{ route('locations.destroy', $location->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger" type="submit" data-confirm="Are you sure?">
-                        Delete
-                    </button>
-                </form>
+                @can('delete', $location)
+                    <form action="{{ route('locations.destroy', $location) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger" type="submit" data-confirm="Are you sure?">
+                            Delete
+                        </button>
+                    </form>
+                @endcan
             </div>
-        @endcan
+        @endcanany
 
         <h1 class="display-4">{{ $location->title  }}</h1>
         <p class="lead">{{ $location->description }}</p>

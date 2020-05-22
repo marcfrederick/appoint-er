@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -14,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        \App\Location::class => \App\Policies\LocationPolicy::class,
     ];
 
     /**
@@ -25,10 +24,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        // TODO: we should put this in a policy instead.
-        Gate::define('manage-location', function (\App\User $user, \App\Location $location) {
-            return $user->id === $location->user_id || $user->isAdmin();
-        });
     }
 }
