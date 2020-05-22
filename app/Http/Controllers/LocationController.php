@@ -274,7 +274,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        return response(view('location.list', [
+        return response(view('location.index', [
             'locations' => Location::paginate(),
         ]));
     }
@@ -324,7 +324,7 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        return response(view('location.detail', [
+        return response(view('location.show', [
             'location' => $location
         ]));
     }
@@ -376,6 +376,6 @@ class LocationController extends Controller
         $query = $request->input('query');
         $locations = Location::whereRaw("UPPER(title) LIKE '%".strtoupper($query)."%'")
             ->paginate();
-        return view('location.list', ['locations' => $locations]);
+        return view('location.index', ['locations' => $locations]);
     }
 }
