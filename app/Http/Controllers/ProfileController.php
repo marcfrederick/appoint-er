@@ -8,10 +8,10 @@ use App\User;
 class ProfileController extends Controller
 {
     /**
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\View\View
      */
-    function show($id)
+    public function show($id)
     {
         return view('profile', ['user' => User::findOrFail($id)]);
     }
