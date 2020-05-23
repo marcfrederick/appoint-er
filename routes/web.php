@@ -29,4 +29,4 @@ Route::resource('locations', 'LocationController')
 
 // Profile routes
 Route::resource('users', 'UserController')
-    ->only(['show']);
+    ->only(['show', 'index']);

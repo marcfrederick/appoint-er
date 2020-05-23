@@ -50,6 +50,12 @@
                                 {{ __('New location') }}
                             </a>
 
+                            @can('viewAny', \App\User::class)
+                                <a class="dropdown-item" href="{{ route('users.index') }}">
+                                    {{ __('All users') }}
+                                </a>
+                            @endcan
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
