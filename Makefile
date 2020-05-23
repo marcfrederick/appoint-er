@@ -1,13 +1,36 @@
-.PHONY: refresh-db mix serve test
+COMPOSER := ./composer.phar
+NPM := npm
 
-refresh-db:
+.PHONY: setup
+setup:
+	$(COMPOSER) install
+	$(NPM) install
+
+.PHONY: config
+config: deps
+	cp -n .env.example .env
+	php artisan key:generate
+	@echo 'Remember to modify the generated .env file'
+
+.PHONY: resources
+resources:
+	$(NPM) run dev
+
+.PHONY: dump-autoload
+dump-autoload:
+	$(COMPOSER) dump-autoload -o
+
+.PHONY: refresh-db
+db-fresh:
 	php artisan migrate:fresh --seed
 
-mix:
-	npm run dev
-
-serve:
+.PHONY: run
+run:
 	php artisan serve
 
-test:
+.PHONY: run-fresh
+clean-run: setup resources dump-autoload db-fresh run
+
+.PHONY: check
+check:
 	vendor/bin/phpunit
