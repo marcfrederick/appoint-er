@@ -19,7 +19,7 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <li>
-                    <form action="{{ route('locations.search') }}" method="GET" class="input-group mb-3">
+                    <form action="{{ route('locations.search') }}" method="GET" class="input-group">
                         <input id="query" name="query" type="text" class="form-control" placeholder="Search">
                         <div class="input-group-append">
                             <button type="submit" class="input-group-text">{{ __('Search') }}</button>
