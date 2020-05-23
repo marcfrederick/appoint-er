@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -45,6 +46,7 @@ class UserController extends Controller
     {
         $user->delete();
 
+        Session::push('toasts', 'User deleted successfully!');
         return redirect(RouteServiceProvider::HOME);
     }
 }

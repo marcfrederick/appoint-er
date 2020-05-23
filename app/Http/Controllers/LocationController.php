@@ -7,6 +7,7 @@ use App\Address;
 use App\Location;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LocationController extends Controller
 {
@@ -313,6 +314,7 @@ class LocationController extends Controller
             'user_id' => $request->user()->id,
         ]);
 
+        Session::push('toasts', 'Location created successfully!');
         return redirect(route('locations.show', $location));
     }
 
@@ -363,6 +365,7 @@ class LocationController extends Controller
     {
         $location->delete();
 
+        Session::push('toasts', 'Location deleted successfully!');
         return redirect(RouteServiceProvider::HOME);
     }
 

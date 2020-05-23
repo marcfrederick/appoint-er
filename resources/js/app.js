@@ -12,3 +12,8 @@ for (let i = 0; i < confirmableLinks.length; i++) {
         }
     });
 }
+
+// Enable toasts.
+$(document).ready(function () {
+    $('.toast').toast('show');
+});
