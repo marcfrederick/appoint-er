@@ -28,7 +28,5 @@ Route::resource('locations', 'LocationController')
     ->except(['update', 'edit']);
 
 // Profile routes
-Route::prefix('/users')->name('users.')->group(function () {
-    Route::get('/detail/{id}', 'ProfileController@show')
-        ->name('detail');
-});
+Route::resource('users', 'UserController')
+    ->only(['show']);

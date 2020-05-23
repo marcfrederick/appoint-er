@@ -23,7 +23,7 @@
 
         <h2>Owner</h2>
         <ul class="list-unstyled">
-            <li><a href="{{ route('users.detail', $location->user) }}">{{ $location->user->name }}</a></li>
+            <li><a href="{{ route('users.show', $location->user) }}">{{ $location->user->name }}</a></li>
             <li>{{ $location->user->email }}</li>
         </ul>
 

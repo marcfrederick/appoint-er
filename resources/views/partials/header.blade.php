@@ -42,7 +42,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('users.detail', Auth::user()) }}">
+                            <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">
                                 {{ __('Profile') }}
                             </a>
 
