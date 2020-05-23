@@ -31,4 +31,16 @@ class UserPolicy
     {
         return true;
     }
+
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $victim
+     * @return mixed
+     */
+    public function delete(User $user, User $victim)
+    {
+        return $user->isAdmin();
+    }
 }

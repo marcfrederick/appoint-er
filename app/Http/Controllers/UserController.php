@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Providers\RouteServiceProvider;
 use App\User;
 
 class UserController extends Controller
@@ -31,5 +32,19 @@ class UserController extends Controller
     public function show(User $user)
     {
         return response(view('user.show', ['user' => $user]));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect(RouteServiceProvider::HOME);
     }
 }
