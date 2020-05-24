@@ -6,21 +6,16 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class IndexTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * A basic test example.
-     *
-     * @return void
+     * Test that everyone can view the homepage.
      */
-    public function testBasicTest()
+    public function testShow()
     {
-        $this->seed();
-
         $response = $this->get('/');
-
-        $response->assertOk();
+        $response->assertStatus(200);
     }
 }
