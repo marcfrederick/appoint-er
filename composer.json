@@ -1,12 +1,21 @@
 {
-    "name": "laravel/laravel",
+    "name": "appoint-er/appoint-er",
+    "description": "appoint-er homepage",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": [
-        "framework",
-        "laravel"
-    ],
+    "readme": "README.md",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Marc Frederick Trölitzsch",
+            "email": "ma391tro@htwg-konstanz.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Marc Szyperski",
+            "email": "ma391szy@htwg-konstanz.de",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": "^7.2.5",
         "fzaninotto/faker": "^1.9.1",
