@@ -10,7 +10,7 @@
                     <form action="{{ route('locations.destroy', $location) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-danger" type="submit" data-confirm="Are you sure?">
+                        <button class="btn btn-danger confirmable" type="submit" data-confirm="Are you sure?">
                             Delete
                         </button>
                     </form>

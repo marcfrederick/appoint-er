@@ -1,17 +1,9 @@
 require('./bootstrap');
 
-let confirmableLinks = document.querySelectorAll('.confirmable');
-
-for (let i = 0; i < confirmableLinks.length; i++) {
-    confirmableLinks[i].addEventListener('click', function (event) {
-        event.preventDefault();
-
-        let choice = confirm(this.getAttribute('data-confirm'));
-        if (choice) {
-            window.location.href = this.getAttribute('href');
-        }
-    });
-}
+$('.confirmable').click(function () {
+    const message = $(this).attr('data-confirm')
+    confirm(message)
+})
 
 // Enable toasts.
 $(document).ready(function () {
