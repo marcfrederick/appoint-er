@@ -18,4 +18,13 @@ class Address extends Model
     {
         return $this->hasOne('App\Location');
     }
+
+    /**
+     * @param $country string
+     * @return void
+     */
+    public function setCountryAttribute($country)
+    {
+        $this->attributes['country'] = strtoupper($country);
+    }
 }
