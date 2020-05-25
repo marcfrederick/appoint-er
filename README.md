@@ -1,6 +1,7 @@
 # appoint.er
-![Laravel](https://github.com/appoint-er/htwg-web-tech-dynamic/workflows/Laravel/badge.svg)
+> ⚠️ Do **not** edit on GitLab. Changes will be overwritten on the next push to GitHub.
 
 ## Deployment
-![Deployment diagram](.github/resources/deployment.svg)
-
+<div align="center">
+    <img src=".github/resources/deployment.svg" width="80%" alt="Deployment pipeline">
+</div>
