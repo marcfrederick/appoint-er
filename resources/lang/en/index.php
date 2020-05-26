@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 return [
-    'slogan' => 'The appointment portal for our modern times',
+    'slogan' => 'The appointment portal for our modern times.',
     'mission' => 'As a modern appointment portal, it is our mission to arrange appointments quickly and effortlessly. Search for a category or a specific provider and book your appointment right here.',
     'about_us' => [
         'title' => 'About us',
