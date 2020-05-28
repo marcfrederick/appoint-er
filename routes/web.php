@@ -32,6 +32,9 @@ Route::resource('locations', 'LocationController');
 Route::resource('users', 'UserController')
     ->only(['show', 'index', 'destroy']);
 
+//categories
+Route::get('/categories','CategoryController@index');
+
 // Sitemap
 Route::get('/sitemap.xml', 'SitemapController@index');
 Route::get('/sitemap.xml/locations', 'SitemapController@locations');
