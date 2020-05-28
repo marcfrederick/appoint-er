@@ -19,8 +19,8 @@ class CreateLocationsTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->text('description');
-            $table->foreignId('address_id')->references('id')->on('addresses')->onDelete('cascade');
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('address_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         });
     }
 
