@@ -1,0 +1,16 @@
+includes:
+  - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+  level: 5
+  paths:
+    - app
+    - bootstrap
+    - config
+    - database
+  ignoreErrors:
+    # Too much magic for PHPStan to understand
+    - path: database/factories/*
+      message: '#Undefined variable: \$factory#'
+    - path: database/migrations/*
+      message: '#Call to an undefined method Illuminate\\Support\\Fluent::[a-zA-Z0-9_]+\(\)#'
