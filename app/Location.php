@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
+    /** @var array<string> */
     protected $fillable = [
         'title', 'description', 'address_id', 'user_id'
     ];
@@ -28,7 +29,7 @@ class Location extends Model
     }
 
     /**
-     * @param $number
+     * @param int $number
      * @return \Illuminate\Support\Collection
      */
     public function getRecentlyUpdated($number)

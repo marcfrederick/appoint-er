@@ -9,6 +9,7 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    /** @var int */
     public static $defaultStringLength = 191;
 
     /**
