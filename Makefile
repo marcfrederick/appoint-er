@@ -33,4 +33,5 @@ clean-run: setup resources dump-autoload db-fresh run
 
 .PHONY: check
 check:
+	vendor/bin/phpstan analyse --memory-limit=2G --level=8
 	vendor/bin/phpunit
