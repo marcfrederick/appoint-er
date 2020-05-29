@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 
 class LocationController extends Controller
 {
+    /** @var array<string, string> */
     private const COUNTRY_CODES = [
         'AFG' => 'Afghanistan',
         'ALA' => 'Åland Islands',

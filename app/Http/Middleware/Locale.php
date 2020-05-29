@@ -23,6 +23,9 @@ class Locale
     public function handle($request, Closure $next)
     {
         $session = $request->getSession();
+        if (is_null($session)) {
+            return $next($request);
+        }
 
         if (!$session->has(self::SESSION_KEY)) {
             $session->put(self::SESSION_KEY, $request->getPreferredLanguage(self::LOCALES));
