@@ -13,7 +13,7 @@ class Address extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Location>
      */
     public function location()
     {

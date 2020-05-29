@@ -13,7 +13,7 @@ class Location extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Address>
      */
     public function address()
     {
@@ -21,7 +21,7 @@ class Location extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\User>
      */
     public function user()
     {
@@ -30,7 +30,7 @@ class Location extends Model
 
     /**
      * @param int $number
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection<Location>
      */
     public function getRecentlyUpdated($number)
     {
