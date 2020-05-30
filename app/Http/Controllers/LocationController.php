@@ -373,6 +373,7 @@ class LocationController extends Controller
     /**
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function search(Request $request)
     {
