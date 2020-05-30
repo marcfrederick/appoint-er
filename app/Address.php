@@ -13,11 +13,11 @@ class Address extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Location>
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<Location>
      */
     public function location()
     {
-        return $this->hasOne('App\Location');
+        return $this->hasOne(Location::class);
     }
 
     /**

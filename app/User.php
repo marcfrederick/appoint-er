@@ -38,11 +38,11 @@ class User extends Authenticatable
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Location>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Location>
      */
     public function locations()
     {
-        return $this->hasMany('App\Location');
+        return $this->hasMany(Location::class);
     }
 
     /**

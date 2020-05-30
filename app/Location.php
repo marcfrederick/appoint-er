@@ -13,19 +13,19 @@ class Location extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Address>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Address>
      */
     public function address()
     {
-        return $this->belongsTo('App\Address');
+        return $this->belongsTo(Address::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\User>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User>
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
