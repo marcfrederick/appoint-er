@@ -7,6 +7,7 @@ use App\Address;
 use App\Location;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class LocationController extends Controller
@@ -284,10 +285,12 @@ class LocationController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        Log::info('Showing location creation form', ['user_id' => $request->user()->id]);
         return response(view('location.create', [
             'countryCodes' => self::COUNTRY_CODES
         ]));
@@ -315,6 +318,8 @@ class LocationController extends Controller
             'user_id' => $request->user()->id,
         ]);
 
+        Log::info('Stored location', ['location_id' => $location]);
+
         Session::push('toasts', 'Location created successfully!');
         return redirect(route('locations.show', $location));
     }
@@ -327,6 +332,7 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
+        Log::info('Showing location', ['location_id' => $location->id]);
         return response(view('location.show', [
             'location' => $location
         ]));
@@ -366,6 +372,7 @@ class LocationController extends Controller
     {
         $location->delete();
 
+        Log::info('Deleted location', ['location_id' => $location->id]);
         Session::push('toasts', 'Location deleted successfully!');
         return redirect(RouteServiceProvider::HOME);
     }
@@ -378,9 +385,12 @@ class LocationController extends Controller
     public function search(Request $request)
     {
         $this->authorize('viewAny', Location::class);
+
         $query = $request->input('query');
+        Log::info('Performing search', ['user_id' => $request->user()->id, 'query' => $query]);
         $locations = Location::whereRaw("UPPER(title) LIKE '%".strtoupper($query)."%'")
             ->paginate();
+
         return view('location.index', ['locations' => $locations]);
     }
 }
