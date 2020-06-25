@@ -37,5 +37,14 @@
             <li>{{ $location->address->postcode }}</li>
             <li>{{ $location->address->country }}</li>
         </ul>
+
+        <h2>Category</h2>
+        <ul class="list-unstyled">
+            @foreach(DB::table('category__locations')->select('*')->where('location_id', '=', $location->id)->get() as $cl)
+
+                    <li>{{\App\Category::find($cl->category_id)->name}}</li>
+
+            @endforeach
+        </ul>
     </div>
 @endsection

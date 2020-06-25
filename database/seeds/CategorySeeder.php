@@ -13,13 +13,15 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            'name' => 'Allgemeinarzt',
-            'location_id' => '7'
+            'name' => 'Allgemeinarzt'
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'Augenarzt',
-            'location_id' => '8'
+            'name' => 'Augenarzt'
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Frisör'
         ]);
     }
 }

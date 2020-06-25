@@ -28,9 +28,9 @@ class Location extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function categories()
+    public function category_locations()
     {
-        return $this->hasMany('App\Category');
+        return $this->hasMany('App\Category_Location');
     }
 
     /**
