@@ -63,6 +63,16 @@
                 <input type="text" class="form-control" placeholder="Suche..." aria-label="search-term"
                        aria-describedby="button-search">
                 <div class="input-group-append">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Wählen Sie eine Kategorie
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
                     <button class="btn btn-outline-primary" type="button" id="button-search">Suchen</button>
                 </div>
             </div>
@@ -72,4 +82,7 @@
             </div>
         </div>
     </div>
+
+
+
 @endsection
