@@ -387,7 +387,7 @@ class LocationController extends Controller
         $this->authorize('viewAny', Location::class);
 
         $query = $request->input('query');
-        Log::info('Performing search', ['user_id' => $request->user()->id, 'query' => $query]);
+        Log::info('Performing search', ['user_id' => $request->user(), 'query' => $query]);
         $locations = Location::whereRaw("UPPER(title) LIKE '%".strtoupper($query)."%'")
             ->paginate();
 
