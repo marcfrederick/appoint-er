@@ -43,5 +43,5 @@ jobs:
         DB_USERNAME: appointer
         DB_PASSWORD: appointer
       run: vendor/bin/phpunit
-    - name: Type checks via PHPStan
-      run: ./vendor/bin/phpstan analyse --memory-limit=2G
+    #- name: Type checks via PHPStan
+    #  run: ./vendor/bin/phpstan analyse --memory-limit=2G
