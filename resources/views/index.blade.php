@@ -60,7 +60,7 @@
             <h2>{{ __('index.offers.title') }}</h2>
 
             <div class="input-group mt-4 mb-4">
-                <input type="text" class="form-control" placeholder="Suche..." aria-label="search-term"
+                <input id="ajax-search" type="text" class="form-control" placeholder="Suche..." aria-label="search-term"
                        aria-describedby="button-search">
                 <div class="input-group-append">
                     <div class="dropdown">
@@ -77,7 +77,7 @@
                 </div>
             </div>
 
-            <div class="card-columns">
+            <div id="ajax-search-results" class="card-columns">
                 @each('partials.location-card', $locations, 'location')
             </div>
         </div>

@@ -388,9 +388,23 @@ class LocationController extends Controller
 
         $query = $request->input('query');
         Log::info('Performing search', ['user_id' => $request->user(), 'query' => $query]);
-        $locations = Location::whereRaw("UPPER(title) LIKE '%".strtoupper($query)."%'")
+        $locations = Location::whereRaw("UPPER(title) LIKE '%" . strtoupper($query) . "%'")
             ->paginate();
 
         return view('location.index', ['locations' => $locations]);
+    }
+
+    /**
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function ajaxSearch(Request $request)
+    {
+        $this->authorize('viewAny', Location::class);
+
+        $query = $request->input('query');
+        Log::info('Performing ajax search', ['user_id' => $request->user(), 'query' => $query]);
+        return Location::whereRaw("UPPER(title) LIKE '%" . strtoupper($query) . "%'")->get();
     }
 }
