@@ -1,4 +1,5 @@
 require('./bootstrap');
+require('./cookie');
 
 $('.confirmable').click(function () {
     const message = $(this).attr('data-confirm')
