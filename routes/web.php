@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,8 @@ Route::view('/imprint', 'imprint')->name('imprint');
 // locations
 Route::get('/locations/search', 'LocationController@search')
     ->name('locations.search');
+Route::get('/locations/ajax-search', 'LocationController@ajaxSearch')
+    ->name('locations.ajax-search');
 Route::resource('locations', 'LocationController')
     ->except(['update', 'edit']);
 
