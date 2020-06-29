@@ -37,13 +37,16 @@
             <li>{{ $location->address->postcode }}</li>
             <li>{{ $location->address->country }}</li>
         </ul>
-
-        <h2>Category</h2>
+        <p> {{$location->user->name}}</p>
+        <h2>
+            @if(count($location->categories) === 0)
+            @elseif(count($location->categories) === 1) Category
+            @else Categories
+            @endif
+        </h2>
         <ul class="list-unstyled">
-            @foreach(DB::table('category__locations')->select('*')->where('location_id', '=', $location->id)->get() as $cl)
-
-                    <li>{{\App\Category::find($cl->category_id)->name}}</li>
-
+            @foreach( $location->categories as $cat)
+                <li>{{$cat->name}}</li>
             @endforeach
         </ul>
     </div>

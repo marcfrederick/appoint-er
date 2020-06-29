@@ -10,6 +10,12 @@ class Category extends Model
         'name'
     ];
 
+    public function locations()
+    {
+        return $this->belongsToMany('App\Location');
+    }
+
+
     public function category_locations()
     {
         return $this->belongsToMany('App\Category_Location');
