@@ -21,6 +21,7 @@ Auth::routes();
 // Misc routes
 Route::get('/', 'IndexController@show');
 Route::view('/imprint', 'imprint')->name('imprint');
+Route::view('/privacy', 'privacy')->name('privacy-policy');
 
 // locations
 Route::get('/locations/search', 'LocationController@search')
