@@ -27,8 +27,7 @@ Route::get('/locations/search', 'LocationController@search')
     ->name('locations.search');
 Route::get('/locations/ajax-search', 'LocationController@ajaxSearch')
     ->name('locations.ajax-search');
-Route::resource('locations', 'LocationController')
-    ->except(['update', 'edit']);
+Route::resource('locations', 'LocationController');
 
 // Profile routes
 Route::resource('users', 'UserController')

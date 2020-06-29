@@ -6,12 +6,15 @@
     <div class="container py-4">
         @canany(['delete', 'update'], $location)
             <div class="text-right">
+                @can('update', $location)
+                    <a class="btn btn-secondary" href="{{ route('locations.edit', $location) }}">{{ __('Edit') }}</a>
+                @endcan
                 @can('delete', $location)
                     <form action="{{ route('locations.destroy', $location) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger confirmable" type="submit" data-confirm="Are you sure?">
-                            Delete
+                            {{ __('Delete') }}
                         </button>
                     </form>
                 @endcan
