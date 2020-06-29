@@ -341,24 +341,43 @@ class LocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Location  $location
-     * @return void
+     * @param  \App\Location $location
+     * @return \Illuminate\View\View
      */
     public function edit(Location $location)
     {
-        //
+        return view('location.edit', [
+            'location' => $location,
+            'countryCodes' => self::COUNTRY_CODES
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Location  $location
-     * @return void
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Location $location
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Location $location)
     {
-        //
+        $data = $request->all();
+
+        $location->update([
+            'title' => $data['title'],
+            'description' => $data['description'],
+        ]);
+        $location->address->update([
+            'street' => $data['street'],
+            'postcode' => $data['postcode'],
+            'city' => $data['city'],
+            'country' => $data['country'],
+        ]);
+
+        Log::info('Edited location', ['location_id' => $location]);
+
+        Session::push('toasts', 'Location edited successfully!');
+        return redirect(route('locations.show', $location));
     }
 
     /**
