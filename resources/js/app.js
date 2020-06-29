@@ -10,7 +10,7 @@ $('#ajax-search').keyup(function (event) {
     const query = $('#ajax-search').val()
     $.ajax({
         dataType: "json",
-        url: `/locations/ajax-search?query=${query}`,
+        url: `/api/locations/ajax-search?query=${query}`,
         success: function (data) {
             let out = ''
             data.forEach(result => {
