@@ -31,3 +31,8 @@ Route::resource('locations', 'LocationController');
 // Profile routes
 Route::resource('users', 'UserController')
     ->only(['show', 'index', 'destroy']);
+
+// Sitemap
+Route::get('/sitemap.xml', 'SitemapController@index');
+Route::get('/sitemap.xml/locations', 'SitemapController@locations');
+Route::get('/sitemap.xml/users', 'SitemapController@users');
