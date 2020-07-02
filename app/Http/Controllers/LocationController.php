@@ -434,7 +434,7 @@ class LocationController extends Controller
         if (!is_null($query) && !empty($query)) {
             $return = $return->whereRaw("UPPER(title) LIKE '%" . strtoupper($query) . "%'");
         }
-        if (!is_null($query) && !empty($cat) && $cat !== '*') {
+        if (!is_null($cat) && !empty($cat) && $cat !== '*') {
             $return = $return->where('categories.id', '=', $cat);
         }
         return $return->get();
