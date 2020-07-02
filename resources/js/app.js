@@ -6,13 +6,16 @@ $('.confirmable').click(function () {
     confirm(message)
 })
 
-$('#ajax-search').keyup(function (event) {
-    const query = $('#ajax-search').val()
+
+function ajaxSearch(event) {
+
+    const inputCat = $('#ajaxCategories').val();
+    const inputName = $('#ajaxInput').val();
     $.ajax({
         dataType: "json",
-        url: `/api/locations/ajax-search?query=${query}`,
+        url: `/api/locations/ajax-search?query=${inputName}&category=${inputCat}`,
         success: function (data) {
-            if(data.length===0){
+            if (data.length === 0) {
 
                 $('#ajax-search-results').html('<p> Nothing found </p>')
                 return;
@@ -34,7 +37,12 @@ $('#ajax-search').keyup(function (event) {
             $('#ajax-search-results').html(out)
         }
     })
-})
+}
+
+$('#ajaxInput').keyup(ajaxSearch)
+
+
+$('#ajaxCategories').change(ajaxSearch)
 
 // Enable toasts.
 $(document).ready(function () {

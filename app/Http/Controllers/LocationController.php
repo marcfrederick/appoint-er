@@ -285,7 +285,7 @@ class LocationController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -299,7 +299,7 @@ class LocationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
@@ -327,7 +327,7 @@ class LocationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Location  $location
+     * @param \App\Location $location
      * @return \Illuminate\Http\Response
      */
     public function show(Location $location)
@@ -342,7 +342,7 @@ class LocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Location $location
+     * @param \App\Location $location
      * @return \Illuminate\View\View
      */
     public function edit(Location $location)
@@ -356,8 +356,8 @@ class LocationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Location $location
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Location $location
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Location $location)
@@ -384,7 +384,7 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Location  $location
+     * @param \App\Location $location
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
@@ -398,7 +398,7 @@ class LocationController extends Controller
     }
 
     /**
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -415,16 +415,27 @@ class LocationController extends Controller
     }
 
     /**
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function ajaxSearch(Request $request)
     {
         $this->authorize('viewAny', Location::class);
-
         $query = $request->input('query');
-        Log::info('Performing ajax search', ['user_id' => $request->user(), 'query' => $query]);
-        return Location::whereRaw("UPPER(title) LIKE '%" . strtoupper($query) . "%'")->get();
+        $cat = $request->input('category');
+
+        Log::info('Performing ajax search', ['user_id' => $request->user(), 'query' => $query, 'category_?' => $cat]);
+        $return = Location::leftJoin('category_location', 'category_location.location_id', '=', 'locations.id')
+            ->leftJoin('categories', 'category_location.category_id', '=', 'categories.id')
+            ->limit(50);
+
+        if ($query !== null && strlen($query) !== 0) {
+            $return = $return->whereRaw("UPPER(title) LIKE '%" . strtoupper($query) . "%'");
+        }
+        if (strlen($cat) !== 0 && $cat !== '*') {
+            $return = $return->where('categories.id', '=', $cat);
+        }
+        return $return->get();
     }
 }

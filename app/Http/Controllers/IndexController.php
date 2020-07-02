@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Location;
 use Illuminate\Support\Facades\DB;
 
@@ -30,7 +31,7 @@ class IndexController extends Controller
     {
         return view('index', [
             'locations' => $this->location->getRecentlyUpdated($this->numberOfIndexListings),
-
+            'categories' => Category::all()
         ]);
     }
 }

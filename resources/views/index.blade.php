@@ -12,7 +12,8 @@
 
     <div id="page-content" class="container">
         <div class="float-right">
-            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-hashtags="appointer"
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+               data-hashtags="appointer"
                data-dnt="true" data-show-count="false">Tweet</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
@@ -66,29 +67,22 @@
             <h2>{{ __('index.offers.title') }}</h2>
 
             <div class="input-group mt-4 mb-4">
-                <input id="ajax-search" type="text" class="form-control" placeholder="Suche..." aria-label="search-term"
-                       aria-describedby="button-search">
+                <input id="ajaxInput" type="text" class="form-control" placeholder="Suche..." aria-label="search-term"
+                       aria-describedby="button-search" autocomplete="false">
                 <div class="input-group-append">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Wählen Sie eine Kategorie
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                    <button class="btn btn-outline-primary" type="button" id="button-search">Suchen</button>
+                    <select name="category" id="ajaxCategories" class="btn btn-secondary">
+                        <option value="*" selected hidden>Kategorie wählen</option>
+                        <option value="*">Alle</option>
+                        @foreach($categories as $cat )
+                            <option value="{{$cat->id}}">{{$cat->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-
             <div id="ajax-search-results" class="card-columns">
                 @each('partials.location-card', $locations, 'location')
             </div>
         </div>
     </div>
-
-
 
 @endsection
