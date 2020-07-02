@@ -426,14 +426,15 @@ class LocationController extends Controller
         $cat = $request->input('category');
 
         Log::info('Performing ajax search', ['user_id' => $request->user(), 'query' => $query, 'category_?' => $cat]);
-        $return = Location::leftJoin('category_location', 'category_location.location_id', '=', 'locations.id')
+        $return = Location::select(['locations.id', 'locations.title', 'locations.description'])
+            ->leftJoin('category_location', 'category_location.location_id', '=', 'locations.id')
             ->leftJoin('categories', 'category_location.category_id', '=', 'categories.id')
             ->limit(15);
 
-        if ($query !== null && strlen($query) !== 0) {
+        if (!is_null($query) && !empty($query)) {
             $return = $return->whereRaw("UPPER(title) LIKE '%" . strtoupper($query) . "%'");
         }
-        if (strlen($cat) !== 0 && $cat !== '*') {
+        if (!is_null($query) && !empty($cat) && $cat !== '*') {
             $return = $return->where('categories.id', '=', $cat);
         }
         return $return->get();
