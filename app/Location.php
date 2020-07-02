@@ -31,16 +31,4 @@ class Location extends Model
     public function categories(){
         return $this->belongsToMany(Category::class);
     }
-
-
-    /**
-     * @param int $number
-     * @return \Illuminate\Support\Collection<Location>
-     */
-    public function getRecentlyUpdated($number)
-    {
-        return $this->orderBy('updated_at', 'desc')
-            ->take($number)
-            ->get();
-    }
 }

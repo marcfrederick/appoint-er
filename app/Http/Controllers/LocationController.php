@@ -428,7 +428,7 @@ class LocationController extends Controller
         Log::info('Performing ajax search', ['user_id' => $request->user(), 'query' => $query, 'category_?' => $cat]);
         $return = Location::leftJoin('category_location', 'category_location.location_id', '=', 'locations.id')
             ->leftJoin('categories', 'category_location.category_id', '=', 'categories.id')
-            ->limit(50);
+            ->limit(15);
 
         if ($query !== null && strlen($query) !== 0) {
             $return = $return->whereRaw("UPPER(title) LIKE '%" . strtoupper($query) . "%'");

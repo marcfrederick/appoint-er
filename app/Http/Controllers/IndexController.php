@@ -30,7 +30,6 @@ class IndexController extends Controller
     protected function show()
     {
         return view('index', [
-            'locations' => $this->location->getRecentlyUpdated($this->numberOfIndexListings),
             'categories' => Category::all()
         ]);
     }

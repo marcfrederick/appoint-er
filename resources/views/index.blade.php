@@ -80,7 +80,7 @@
                 </div>
             </div>
             <div id="ajax-search-results" class="card-columns">
-                @each('partials.location-card', $locations, 'location')
+
             </div>
         </div>
     </div>
