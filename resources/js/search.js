@@ -9,7 +9,7 @@ function makeResultCardHTML(result) {
         <a class="btn btn-outline-primary" data-toggle="modal"
            data-target="#bookingNotImplementedModal">Termin Vereinbaren</a>
     </div>
-</div>`
+</div>`;
 }
 
 function successCallback(data) {
@@ -17,23 +17,23 @@ function successCallback(data) {
     if (data.length === 0) {
         html = '<p> Nothing found </p>';
     } else {
-        html = data.map(makeResultCardHTML).join("\n")
+        html = data.map(makeResultCardHTML).join('\n');
     }
-    $('#ajax-search-results').html(html)
+    $('#ajax-search-results').html(html);
 }
 
 function errorCallback() {
-    console.error("Something went wrong during the AJAX call.")
+    console.error('Something went wrong during the AJAX call.');
 }
 
 export function ajaxSearch() {
-    const inputCat = $("#ajaxInputCategories").val();
-    const inputName = $("#ajaxInputName").val();
+    const inputCat = $('#ajaxInputCategories').val();
+    const inputName = $('#ajaxInputName').val();
 
     $.ajax({
-        dataType: "json",
+        dataType: 'json',
         url: `/api/locations/ajax-search?query=${inputName}&category=${inputCat}`,
         success: successCallback,
         error: errorCallback,
-    })
+    });
 }
