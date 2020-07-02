@@ -29,13 +29,9 @@ class Location extends Model
     }
 
     public function categories(){
-        return $this->belongsToMany('App\Category');
+        return $this->belongsToMany(Category::class);
     }
 
-    public function category_locations()
-    {
-        return $this->belongsToMany('App\Category_Location');
-    }
 
     /**
      * @param int $number
