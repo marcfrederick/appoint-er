@@ -28,6 +28,11 @@ class Location extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function categories(){
+        return $this->belongsToMany(Category::class);
+    }
+
+
     /**
      * @param int $number
      * @return \Illuminate\Support\Collection<Location>

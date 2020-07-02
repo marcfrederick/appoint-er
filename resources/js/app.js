@@ -12,6 +12,11 @@ $('#ajax-search').keyup(function (event) {
         dataType: "json",
         url: `/api/locations/ajax-search?query=${query}`,
         success: function (data) {
+            if(data.length===0){
+
+                $('#ajax-search-results').html('<p> Nothing found </p>')
+                return;
+            }
             let out = ''
             data.forEach(result => {
                 out += `

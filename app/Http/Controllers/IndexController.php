@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Location;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -28,7 +29,8 @@ class IndexController extends Controller
     protected function show()
     {
         return view('index', [
-            'locations' => $this->location->getRecentlyUpdated($this->numberOfIndexListings)
+            'locations' => $this->location->getRecentlyUpdated($this->numberOfIndexListings),
+
         ]);
     }
 }

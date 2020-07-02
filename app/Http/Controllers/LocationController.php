@@ -334,6 +334,7 @@ class LocationController extends Controller
     {
         Log::info('Showing location', ['location_id' => $location->id]);
         return response(view('location.show', [
+
             'location' => $location
         ]));
     }

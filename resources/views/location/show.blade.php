@@ -37,5 +37,17 @@
             <li>{{ $location->address->postcode }}</li>
             <li>{{ $location->address->country }}</li>
         </ul>
+        <p> {{$location->user->name}}</p>
+        <h2>
+            @if(count($location->categories) === 0)
+            @elseif(count($location->categories) === 1) Category
+            @else Categories
+            @endif
+        </h2>
+        <ul class="list-unstyled">
+            @foreach( $location->categories as $cat)
+                <li>{{$cat->name}}</li>
+            @endforeach
+        </ul>
     </div>
 @endsection
