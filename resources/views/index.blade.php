@@ -67,10 +67,10 @@
             <h2>{{ __('index.offers.title') }}</h2>
 
             <div class="input-group mt-4 mb-4">
-                <input id="ajaxInput" type="text" class="form-control" placeholder="Suche..." aria-label="search-term"
-                       aria-describedby="button-search" autocomplete="false">
+                <input id="ajaxInputName" type="text" class="form-control" placeholder="Suche..."
+                       aria-label="search-term" aria-describedby="button-search" autocomplete="false">
                 <div class="input-group-append">
-                    <select name="category" id="ajaxCategories" class="btn btn-secondary">
+                    <select name="category" id="ajaxInputCategories" class="btn btn-secondary">
                         <option value="*" selected hidden>Kategorie wählen</option>
                         <option value="*">Alle</option>
                         @foreach($categories as $cat )
