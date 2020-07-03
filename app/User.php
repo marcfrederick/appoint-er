@@ -46,10 +46,27 @@ class User extends Authenticatable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Booking>
+     */
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCurrent()
+    {
+        $auth_user = \Auth::user();
+        return isset($auth_user) && $this->id === $auth_user->id;
+    }
+
+    /**
      * @return bool
      */
     public function isAdmin()
     {
-        return $this->role == 'admin';
+        return $this->role === 'admin';
     }
 }

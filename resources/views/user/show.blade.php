@@ -20,6 +20,15 @@
 
         <h1>{{ $user->name }} <small class="text-muted">{{  $user->email }}</small></h1>
 
+        @if($user->isCurrent() && $user->bookings->isNotEmpty())
+            <h2>{{ __('My Bookings') }}</h2>
+            <ul>
+                @foreach($user->bookings as $booking)
+                    <li>{{ $booking }}</li>
+                @endforeach
+            </ul>
+        @endif
+
         <h2>{{ __('Listings by this user') }}</h2>
         @if($user->locations->isNotEmpty())
             <div class="card-columns">

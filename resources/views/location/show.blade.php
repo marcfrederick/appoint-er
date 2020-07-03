@@ -24,6 +24,19 @@
         <h1 class="display-4">{{ $location->title  }}</h1>
         <p class="lead">{{ $location->description }}</p>
 
+        <h2>{{ __('Available Slots') }}</h2>
+        @if($location->slots->isNotEmpty())
+            <ul>
+                @foreach($location->slots as $slot)
+                    @empty($slot->booking)
+                        <li>{{ $slot }}</li>
+                    @endempty
+                @endforeach
+            </ul>
+        @else
+            No available slots.
+        @endif
+
         <h2>Owner</h2>
         <ul class="list-unstyled">
             <li><a href="{{ route('users.show', $location->user) }}">{{ $location->user->name }}</a></li>
