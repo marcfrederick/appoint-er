@@ -14,7 +14,6 @@ class SlotController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(Location::class, 'location');
         $this->middleware('auth');
     }
 
@@ -26,6 +25,7 @@ class SlotController extends Controller
      */
     public function create(Location $location)
     {
+        $this->authorize('update', $location);
         \Log::info('Create slot for location', ['location' => $location]);
         return view('slot.create', ['location' => $location]);
     }
@@ -39,6 +39,7 @@ class SlotController extends Controller
      */
     public function store(Request $request, Location $location)
     {
+        $this->authorize('update', $location);
         Log::info('Store slot for location', ['location' => $location]);
         $request->validate([
             'date' => 'required|date_format:Y-m-d|after_or_equal:now',
@@ -68,6 +69,7 @@ class SlotController extends Controller
      */
     public function destroy(Slot $slot)
     {
+        $this->authorize('update', $slot->location);
         $slot->delete();
     }
 }
