@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Edit Location') }}</div>
+                    <div class="card-header">{{ __('location.location_edit') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('locations.update', $location) }}">
@@ -19,7 +19,7 @@
 
                             <div class="form-group row">
                                 <label for="title"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('location.title') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="title" type="text"
@@ -35,7 +35,7 @@
 
                             <div class="form-group row">
                                 <label for="description"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('location.description') }}</label>
 
                                 <div class="col-md-6">
                                     <textarea id="description" type="text"
@@ -53,7 +53,7 @@
 
                             <div class="form-group row">
                                 <label for="street"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Street') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('location.street') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="street" type="text"
@@ -70,7 +70,7 @@
 
                             <div class="form-group row">
                                 <label for="postcode"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Postcode') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('location.postcode') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="postcode" type="text"
@@ -87,7 +87,7 @@
 
                             <div class="form-group row">
                                 <label for="city"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('location.city') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="city" type="text"
@@ -105,7 +105,7 @@
 
                             <div class="form-group row">
                                 <label for="country"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('location.country') }}</label>
 
                                 <div class="col-md-6">
                                     <select id="country" type="text"
@@ -127,7 +127,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-outline-primary">
-                                        {{ __('Save') }}
+                                        {{ __('location.confirm') }}
                                     </button>
                                 </div>
                             </div>

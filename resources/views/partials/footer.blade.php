@@ -2,6 +2,6 @@
     <div>
         &#169; appoint.er,
         <a href="{{ route('imprint') }}">{{ __('imprint.title') }}</a>,
-        <a href="{{ route('privacy-policy') }}">{{ __('Privacy policy') }}</a>
+        <a href="{{ route('privacy-policy') }}">{{ __('partials.footer.privacy_policy') }}</a>
     </div>
 </footer>

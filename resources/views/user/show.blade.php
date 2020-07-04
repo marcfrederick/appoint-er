@@ -21,14 +21,14 @@
         <h1>{{ $user->name }} <small class="text-muted">{{  $user->email }}</small></h1>
 
         @if($user->isCurrent() && $user->bookings->isNotEmpty())
-            <h2>{{ __('My Bookings') }}</h2>
+            <h2>{{ __('user.my_bookings') }}</h2>
             <table class="table table-striped">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">{{ __('Location') }}</th>
-                    <th scope="col">{{ __('Date') }}</th>
-                    <th scope="col">{{ __('Time') }}</th>
-                    <th scope="col">{{ __('Duration') }}</th>
+                    <th scope="col">{{ __('user.location') }}</th>
+                    <th scope="col">{{ __('user.date') }}</th>
+                    <th scope="col">{{ __('user.time') }}</th>
+                    <th scope="col">{{ __('user.duration') }}</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
@@ -40,15 +40,15 @@
                         </td>
                         <td>{{ date_format(date_create($booking->slot->start), 'Y-m-d') }}</td>
                         <td>{{ date_format(date_create($booking->slot->start), 'H:i') }}</td>
-                        <td>{{ $booking->slot->duration }} {{ __('minutes') }}</td>
+                        <td>{{ $booking->slot->duration }} {{ trans_choice('user.minute', $booking->slot->duration) }}</td>
                         <td class="float-right">
                             <form method="POST"
                                 action="{{ route('bookings.destroy', [$booking->slot->location, $booking->slot, $booking]) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger confirmable"
-                                        data-confirm="Are you sure you want to cancel this booking?">
-                                    {{ __('Cancel Booking') }}
+                                        data-confirm="{{ __('user.cancel_confirmation') }}">
+                                    {{ __('user.cancel') }}
                                 </button>
                             </form>
                         </td>
@@ -60,14 +60,14 @@
             </ul>
         @endif
 
-        <h2>@if($user->isCurrent()){{ __('My listings') }}@else{{ __('Listings by this user') }}@endif</h2>
+        <h2>{{ $user->isCurrent() ? __('user.my_listings') : __('user.listings') }}</h2>
         @if($user->locations->isNotEmpty())
             <div class="card-columns">
                 @each('partials.location-card', $user->locations, 'location')
             </div>
         @else
             <div class="alert alert-info">
-                {{ __('No listings by this user') }}
+                {{ __('user.no_listings') }}
             </div>
         @endif
     </div>

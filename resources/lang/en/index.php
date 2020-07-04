@@ -18,4 +18,9 @@ return [
     'offers' => [
         'title' => 'Offers'
     ],
+    'search' => [
+        'placeholder' => 'Search…',
+        'all' => 'All',
+        'choose_category' => 'Choose category',
+    ]
 ];

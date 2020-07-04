@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container py-4">
-        <h1>{{ __('Users') }}</h1>
+        <h1>{{ __('user.user') }}</h1>
 
         <ul>
             @foreach($users as $user)

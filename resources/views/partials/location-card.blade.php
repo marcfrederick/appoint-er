@@ -4,6 +4,8 @@
         <p class="card-text">{{ $location->description }}</p>
     </div>
     <div class="card-footer text-center">
-        <a class="btn btn-outline-primary" href="{{ route('locations.show', $location->id) }}">Termin Vereinbaren</a>
+        <a class="btn btn-outline-primary" href="{{ route('locations.show', $location->id) }}">
+            {{ __('partials.location_card.make_appointment') }}
+        </a>
     </div>
 </div>

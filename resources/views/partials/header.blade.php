@@ -12,7 +12,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('locations.index') }}">{{ __('Locations') }}</a>
+                    <a class="nav-link" href="{{ route('locations.index') }}">{{ __('partials.header.locations') }}</a>
                 </li>
             </ul>
 
@@ -20,20 +20,21 @@
             <ul class="navbar-nav ml-auto">
                 <li>
                     <form action="{{ route('locations.search') }}" method="GET" class="input-group">
-                        <input id="query" name="query" type="text" class="form-control" placeholder="Search">
+                        <input id="query" name="query" type="text" class="form-control"
+                               placeholder="{{ __('partials.header.search') }}">
                         <div class="input-group-append">
-                            <button type="submit" class="input-group-text">{{ __('Search') }}</button>
+                            <button type="submit" class="input-group-text">{{ __('partials.header.search') }}</button>
                         </div>
                     </form>
                 </li>
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('partials.header.login') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('partials.header.register') }}</a>
                         </li>
                     @endif
                 @else
@@ -45,22 +46,22 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">
-                                {{ __('Profile') }}
+                                {{ __('partials.header.profile') }}
                             </a>
 
                             <a class="dropdown-item" href="{{ route('locations.create_1') }}">
-                                {{ __('New location') }}
+                                {{ __('partials.header.new_location') }}
                             </a>
 
                             @can('viewAny', \App\User::class)
                                 <a class="dropdown-item" href="{{ route('users.index') }}">
-                                    {{ __('All users') }}
+                                    {{ __('partials.header.all_users') }}
                                 </a>
                             @endcan
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('partials.header.logout') }}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -67,14 +67,14 @@
             <h2>{{ __('index.offers.title') }}</h2>
 
             <div class="input-group mt-4 mb-4">
-                <input id="ajaxInputName" type="text" class="form-control" placeholder="Suche..."
+                <input id="ajaxInputName" type="text" class="form-control" placeholder="{{ __('index.search.placeholder') }}"
                        aria-label="search-term" aria-describedby="button-search" autocomplete="false">
                 <div class="input-group-append">
                     <select name="category" id="ajaxInputCategories" class="btn btn-secondary">
-                        <option value="*" selected hidden>Kategorie wählen</option>
-                        <option value="*">Alle</option>
+                        <option value="*" selected hidden>{{ __('index.search.choose_category') }}</option>
+                        <option value="*">{{ __('index.search.all') }}</option>
                         @foreach($categories as $cat )
-                            <option value="{{$cat->id}}">{{$cat->name}}</option>
+                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                         @endforeach
                     </select>
                 </div>

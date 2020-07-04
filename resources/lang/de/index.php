@@ -18,4 +18,9 @@ return [
     'offers' => [
         'title' => 'Angebote'
     ],
+    'search' => [
+        'placeholder' => 'Suche…',
+        'all' => 'Alle',
+        'choose_category' => 'Kategorie wählen',
+    ]
 ];

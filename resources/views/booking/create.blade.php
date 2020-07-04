@@ -13,7 +13,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Confirm booking') }}</div>
+                    <div class="card-header">{{ __('booking.booking_confirm') }}</div>
 
                     <div class="card-body">
                         <form method="POST"
@@ -22,7 +22,7 @@
 
                             <div class="form-group row">
                                 <div class="col-md-4 text-md-right">
-                                    {{ __('Location') }}
+                                    {{ __('booking.location') }}
                                 </div>
                                 <div class="col-md-6">
                                     {{ $location->title }}
@@ -31,7 +31,7 @@
 
                             <div class="form-group row">
                                 <div class="col-md-4 text-md-right">
-                                    {{ __('Start') }}
+                                    {{ __('booking.start') }}
                                 </div>
 
                                 <div class="col-md-6">
@@ -41,18 +41,18 @@
 
                             <div class="form-group row">
                                 <div class="col-md-4 text-md-right">
-                                    {{ __('Duration') }}
+                                    {{ __('booking.duration') }}
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ $slot->duration }}
+                                    {{ $slot->duration }} {{ trans_choice('booking.minute', $slot->duration) }}
                                 </div>
                             </div>
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-outline-primary">
-                                        {{ __('Book') }}
+                                        {{ __('booking.book') }}
                                     </button>
                                 </div>
                             </div>
