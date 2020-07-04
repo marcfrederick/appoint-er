@@ -32,7 +32,9 @@
             <ul>
                 @foreach($location->slots as $slot)
                     @empty($slot->booking)
-                        <li>{{ $slot }}</li>
+                        <li>
+                            <a href="{{ route('bookings.create', ['location' => $location, 'slot' => $slot]) }}">{{ $slot }}</a>
+                        </li>
                     @endempty
                 @endforeach
             </ul>
