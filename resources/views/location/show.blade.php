@@ -8,6 +8,9 @@
             <div class="text-right">
                 @can('update', $location)
                     <a class="btn btn-secondary" href="{{ route('locations.edit', $location) }}">{{ __('Edit') }}</a>
+                    <a class="btn btn-secondary" href="{{ route('slots.create', ['location' => $location]) }}">
+                        {{ __('Add Slot') }}
+                    </a>
                 @endcan
                 @can('delete', $location)
                     <form action="{{ route('locations.destroy', $location) }}" method="POST">

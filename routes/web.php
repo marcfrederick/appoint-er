@@ -24,16 +24,19 @@ Route::view('/imprint', 'imprint')->name('imprint');
 Route::view('/privacy', 'privacy')->name('privacy-policy');
 
 // locations
+Route::resource('locations', 'LocationController');
 Route::get('/locations/search', 'LocationController@search')
     ->name('locations.search');
-Route::resource('locations', 'LocationController');
+Route::get('/locations/{location}/slots/create', 'SlotController@create')->name('slots.create');
+Route::post('/locations/{location}/slots/create', 'SlotController@store')->name('slots.store');
+Route::delete('/locations/{location}/slots/{slot}/destroy')->name('slots.destroy');
 
 // Profile routes
 Route::resource('users', 'UserController')
     ->only(['show', 'index', 'destroy']);
 
 //categories
-Route::get('/categories','CategoryController@index');
+Route::get('/categories', 'CategoryController@index');
 
 // Sitemap
 Route::get('/sitemap.xml', 'SitemapController@index');
