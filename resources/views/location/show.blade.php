@@ -29,15 +29,30 @@
 
         <h2>{{ __('Available Slots') }}</h2>
         @if($location->slots->isNotEmpty())
-            <ul>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
                 @foreach($location->slots as $slot)
                     @empty($slot->booking)
-                        <li>
-                            <a href="{{ route('bookings.create', ['location' => $location, 'slot' => $slot]) }}">{{ $slot }}</a>
-                        </li>
+                        <tr>
+                            <td>{{ date_format(date_create($slot->start), 'Y-m-d') }}</td>
+                            <td>{{ date_format(date_create($slot->start), 'H:i') }}</td>
+                            <td>{{ $slot->duration }} {{ __('minutes') }}</td>
+                            <td class="float-right"><a
+                                    href="{{ route('bookings.create', ['location' => $location, 'slot' => $slot]) }}"
+                                    class="btn btn-primary">{{ __('Book') }}</a></td>
+                        </tr>
                     @endempty
                 @endforeach
-            </ul>
+                </tbody>
+            </table>
         @else
             No available slots.
         @endif

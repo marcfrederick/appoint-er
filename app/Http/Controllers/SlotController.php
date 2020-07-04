@@ -15,6 +15,7 @@ class SlotController extends Controller
     public function __construct()
     {
         $this->authorizeResource(Location::class, 'location');
+        $this->middleware('auth');
     }
 
     /**

@@ -22,14 +22,33 @@
 
         @if($user->isCurrent() && $user->bookings->isNotEmpty())
             <h2>{{ __('My Bookings') }}</h2>
-            <ul>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
                 @foreach($user->bookings as $booking)
-                    <li>{{ $booking }}</li>
+                    <tr>
+                        <td>{{ date_format(date_create($booking->slot->start), 'Y-m-d') }}</td>
+                        <td>{{ date_format(date_create($booking->slot->start), 'H:i') }}</td>
+                        <td>{{ $booking->slot->duration }} {{ __('minutes') }}</td>
+                        <td class="float-right"><a
+                                href="#"
+                                class="btn btn-danger">{{ __('Cancel Booking') }}</a></td>
+                    </tr>
                 @endforeach
+                </tbody>
+            </table>
+            <ul>
             </ul>
         @endif
 
-        <h2>{{ __('Listings by this user') }}</h2>
+        <h2>@if($user->isCurrent()){{ __('My listings') }}@else{{ __('Listings by this user') }}@endif</h2>
         @if($user->locations->isNotEmpty())
             <div class="card-columns">
                 @each('partials.location-card', $user->locations, 'location')
