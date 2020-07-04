@@ -47,10 +47,11 @@ class Location extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Collection<Slot>
      */
-    public function futureSlots()
+    public function futureAvailableSlots()
     {
         return $this->slots()
             ->whereDate('start', '>', now())
+            ->doesntHave('booking')
             ->get();
     }
 }
