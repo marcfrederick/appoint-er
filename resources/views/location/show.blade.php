@@ -28,7 +28,7 @@
         <p class="lead">{{ $location->description }}</p>
 
         <h2>{{ __('Available Slots') }}</h2>
-        @if($location->slots->isNotEmpty())
+        @if($location->futureSlots()->isNotEmpty())
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -39,7 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($location->slots as $slot)
+                @foreach($location->futureSlots() as $slot)
                     @empty($slot->booking)
                         <tr>
                             <td>{{ date_format(date_create($slot->start), 'Y-m-d') }}</td>

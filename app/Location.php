@@ -43,4 +43,14 @@ class Location extends Model
     {
         return $this->hasMany(Slot::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection<Slot>
+     */
+    public function futureSlots()
+    {
+        return $this->slots()
+            ->whereDate('start', '>', now())
+            ->get();
+    }
 }
