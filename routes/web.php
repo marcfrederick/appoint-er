@@ -24,9 +24,9 @@ Route::view('/imprint', 'imprint')->name('imprint');
 Route::view('/privacy', 'privacy')->name('privacy-policy');
 
 // locations
-Route::resource('locations', 'LocationController');
 Route::get('/locations/search', 'LocationController@search')
     ->name('locations.search');
+Route::resource('locations', 'LocationController');
 
 Route::get('/locations/{location}/slots/create', 'SlotController@create')->name('slots.create');
 Route::post('/locations/{location}/slots/create', 'SlotController@store')->name('slots.store');
