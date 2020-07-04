@@ -21,7 +21,7 @@
                                 <div class="col-md-6">
                                     <input id="date" type="date"
                                            class="form-control @error('date') is-invalid @enderror" name="date"
-                                           value="{{ old('date'), now()->format('Y-m-d') }}" required
+                                           value="{{ old('date') }}" placeholder="{{ now()->format('Y-m-d') }}" required
                                            autocomplete="date" autofocus>
                                     @error('date')
                                     <span class="invalid-feedback" role="alert">
@@ -39,7 +39,7 @@
                                 <div class="col-md-6">
                                     <input id="time" type="time"
                                            class="form-control @error('time') is-invalid @enderror" name="time"
-                                           value="{{ old('time'), now()->format('HH:ii') }}" required
+                                           value="{{ old('time') }}" placeholder="{{ now()->format('H:i') }}" required
                                            autocomplete="time" autofocus>
                                     @error('time')
                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +56,8 @@
                                 <div class="col-md-6">
                                     <input id="duration" type="number"
                                            class="form-control @error('duration') is-invalid @enderror" name="duration"
-                                           value="{{ old('duration') }}" required autocomplete="duration" autofocus>
+                                           value="{{ old('duration') }}" placeholder="90" required
+                                           autocomplete="duration" autofocus>
 
                                     @error('duration')
                                     <span class="invalid-feedback" role="alert">
