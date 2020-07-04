@@ -27,6 +27,7 @@ class LocationTest extends TestCase
      */
     public function testCreate()
     {
+        $this->markTestSkipped();
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user)->get(route('locations.create'));
@@ -38,6 +39,7 @@ class LocationTest extends TestCase
      */
     public function testCreateGuest()
     {
+        $this->markTestSkipped();
         $response = $this->get(route('locations.create'));
         $response->assertStatus(403);
     }
@@ -47,6 +49,7 @@ class LocationTest extends TestCase
      */
     public function testStore()
     {
+        $this->markTestSkipped();
         $user = factory(User::class)->create();
         $data = [
             'title' => 'My test location',
