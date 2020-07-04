@@ -6,6 +6,7 @@ use App\Booking;
 use App\Location;
 use App\Slot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class BookingController extends Controller
@@ -55,6 +56,7 @@ class BookingController extends Controller
      */
     public function destroy(Location $location, Slot $slot, Booking $booking)
     {
+        $this->authorize('update', $booking->user);
         $booking->delete();
         Session::push('toasts', 'Cancelled booking');
         return redirect(route('users.show', $booking->user));
