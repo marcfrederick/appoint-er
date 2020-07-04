@@ -19,11 +19,11 @@ class Slot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Location>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Location>
      */
     public function location()
     {
-        return $this->belongsToMany(Location::class);
+        return $this->belongsTo(Location::class);
     }
 
     /**

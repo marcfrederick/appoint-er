@@ -25,21 +25,33 @@
             <table class="table table-striped">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Duration</th>
+                    <th scope="col">{{ __('Location') }}</th>
+                    <th scope="col">{{ __('Date') }}</th>
+                    <th scope="col">{{ __('Time') }}</th>
+                    <th scope="col">{{ __('Duration') }}</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($user->bookings as $booking)
                     <tr>
+                        <td class="font-weight-bold">
+                            <a href="{{ route('locations.show', $booking->slot->location) }}">{{ $booking->slot->location->title }}</a>
+                        </td>
                         <td>{{ date_format(date_create($booking->slot->start), 'Y-m-d') }}</td>
                         <td>{{ date_format(date_create($booking->slot->start), 'H:i') }}</td>
                         <td>{{ $booking->slot->duration }} {{ __('minutes') }}</td>
-                        <td class="float-right"><a
-                                href="#"
-                                class="btn btn-danger">{{ __('Cancel Booking') }}</a></td>
+                        <td class="float-right">
+                            <form method="POST"
+                                action="{{ route('bookings.destroy', [$booking->slot->location, $booking->slot, $booking]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-danger confirmable"
+                                        data-confirm="Are you sure you want to cancel this booking?">
+                                    {{ __('Cancel Booking') }}
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

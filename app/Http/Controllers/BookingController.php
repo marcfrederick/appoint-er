@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use App\Location;
-use App\Providers\RouteServiceProvider;
 use App\Slot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class BookingController extends Controller
 {
@@ -47,13 +47,16 @@ class BookingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  Location $location
+     * @param  Slot $slot
      * @param  \App\Booking $booking
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Booking $booking)
+    public function destroy(Location $location, Slot $slot, Booking $booking)
     {
         $booking->delete();
-        return redirect(RouteServiceProvider::HOME);
+        Session::push('toasts', 'Cancelled booking');
+        return redirect(route('users.show', $booking->user));
     }
 }

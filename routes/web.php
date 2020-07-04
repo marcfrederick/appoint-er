@@ -34,7 +34,7 @@ Route::delete('/locations/{location}/slots/{slot}')->name('slots.destroy');
 
 Route::get('/locations/{location}/slots/{slot}/bookings/create', 'BookingController@create')->name('bookings.create');
 Route::post('/locations/{location}/slots/{slot}/bookings/create', 'BookingController@store')->name('bookings.store');
-Route::delete('/locations/{location}/slots/{slot}/bookings/{booking}', 'BookingController@store')->name('bookings.destroy');
+Route::delete('/locations/{location}/slots/{slot}/bookings/{booking}', 'BookingController@destroy')->name('bookings.destroy');
 
 // Profile routes
 Route::resource('users', 'UserController')
