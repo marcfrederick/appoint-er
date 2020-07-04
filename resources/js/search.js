@@ -26,7 +26,7 @@ function errorCallback() {
     console.error('Something went wrong during the AJAX call.');
 }
 
-export function ajaxSearch() {
+function ajaxSearch() {
     const inputCat = $('#ajaxInputCategories').val();
     const inputName = $('#ajaxInputName').val();
 
@@ -37,3 +37,8 @@ export function ajaxSearch() {
         error: errorCallback,
     });
 }
+
+// Ajax handlers
+$(window).on('load', ajaxSearch);
+$('#ajaxInputName').keyup(ajaxSearch);
+$('#ajaxInputCategories').change(ajaxSearch);

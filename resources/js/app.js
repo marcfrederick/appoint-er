@@ -1,5 +1,3 @@
-import { ajaxSearch } from './search';
-
 require('./bootstrap');
 require('./cookie');
 
@@ -11,8 +9,3 @@ $('.confirmable').click(function() {
 
 // Toast handlers
 $(document).ready(() => $('.toast').toast('show'));
-
-// Ajax handlers
-$(window).on('load', ajaxSearch);
-$('#ajaxInputName').keyup(ajaxSearch);
-$('#ajaxInputCategories').change(ajaxSearch);

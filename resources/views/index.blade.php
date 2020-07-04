@@ -79,9 +79,8 @@
                     </select>
                 </div>
             </div>
-            <div id="ajax-search-results" class="card-columns">
-
-            </div>
+            <div id="ajax-search-results" class="card-columns"></div>
+            <script src="{{ asset('js/search.js') }}" defer></script>
         </div>
     </div>
 
