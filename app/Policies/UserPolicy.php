@@ -23,8 +23,8 @@ class UserPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\User $user
+     * @param  \App\User $model
      * @return mixed
      */
     public function view(?User $user, User $model)
@@ -33,10 +33,22 @@ class UserPolicy
     }
 
     /**
+     * Determine whether the user can update the user.
+     *
+     * @param  \App\User $user
+     * @param  \App\Location $location
+     * @return mixed
+     */
+    public function update(User $user)
+    {
+        return $user->isCurrent();
+    }
+
+    /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\User  $user
-     * @param  \App\User  $victim
+     * @param  \App\User $user
+     * @param  \App\User $victim
      * @return mixed
      */
     public function delete(User $user, User $victim)

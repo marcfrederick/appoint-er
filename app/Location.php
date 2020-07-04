@@ -28,7 +28,29 @@ class Location extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function categories(){
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Category>
+     */
+    public function categories()
+    {
         return $this->belongsToMany(Category::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Slot>
+     */
+    public function slots()
+    {
+        return $this->hasMany(Slot::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection<Slot>
+     */
+    public function futureSlots()
+    {
+        return $this->slots()
+            ->whereDate('start', '>', now())
+            ->get();
     }
 }

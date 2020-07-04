@@ -28,12 +28,20 @@ Route::get('/locations/search', 'LocationController@search')
     ->name('locations.search');
 Route::resource('locations', 'LocationController');
 
+Route::get('/locations/{location}/slots/create', 'SlotController@create')->name('slots.create');
+Route::post('/locations/{location}/slots/create', 'SlotController@store')->name('slots.store');
+Route::delete('/locations/{location}/slots/{slot}')->name('slots.destroy');
+
+Route::get('/locations/{location}/slots/{slot}/bookings/create', 'BookingController@create')->name('bookings.create');
+Route::post('/locations/{location}/slots/{slot}/bookings/create', 'BookingController@store')->name('bookings.store');
+Route::delete('/locations/{location}/slots/{slot}/bookings/{booking}', 'BookingController@destroy')->name('bookings.destroy');
+
 // Profile routes
 Route::resource('users', 'UserController')
     ->only(['show', 'index', 'destroy']);
 
 //categories
-Route::get('/categories','CategoryController@index');
+Route::get('/categories', 'CategoryController@index');
 
 // Sitemap
 Route::get('/sitemap.xml', 'SitemapController@index');
