@@ -30,12 +30,12 @@
         <h2>{{ __('Available Slots') }}</h2>
         @if($location->futureSlots()->isNotEmpty())
             <table class="table table-striped">
-                <thead>
+                <thead class="thead-light">
                 <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Duration</th>
-                    <th></th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
