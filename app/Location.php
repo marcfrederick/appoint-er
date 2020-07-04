@@ -36,6 +36,12 @@ class Location extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function img()
+    {
+        return $this->belongsTo(Locationimg::class);
+    }
+
+
     /**
      * @param  String $categoryName
      * @return void

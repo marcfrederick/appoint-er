@@ -21,6 +21,7 @@ class CreateLocationsTable extends Migration
             $table->text('description');
             $table->foreignId('address_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('img_id')->references('id')->on('locationimgs');
         });
     }
 
