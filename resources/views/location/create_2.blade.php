@@ -7,45 +7,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('New Location') }}</div>
+                    <div class="card-header">{{ __('Location Address') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('locations.store') }}">
+                        <form method="POST" action="{{ route('locations.create_3') }}">
                             @csrf
-
-                            <div class="form-group row">
-                                <label for="title"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="title" type="text"
-                                           class="form-control @error('title') is-invalid @enderror" name="title"
-                                           value="{{ old('title') }}" required autocomplete="title" autofocus>
-                                    @error('title')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="description"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
-
-                                <div class="col-md-6">
-                                    <textarea id="description" type="text"
-                                              class="form-control @error('description') is-invalid @enderror"
-                                              name="description" required
-                                              autocomplete="description">{{ old('description') }}</textarea>
-
-                                    @error('description')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
 
                             <div class="form-group row">
                                 <label for="street"
@@ -57,7 +23,7 @@
                                            value="{{ old('street') }}" required autocomplete="street">
 
                                     @error('street')
-                                        <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -74,7 +40,7 @@
                                            value="{{ old('postcode') }}" required autocomplete="postcode">
 
                                     @error('postcode')
-                                        <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -91,7 +57,7 @@
                                            name="city" value="{{ old('city') }}" required autocomplete="city">
 
                                     @error('city')
-                                        <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -113,7 +79,7 @@
                                     </select>
 
                                     @error('country')
-                                        <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -123,7 +89,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-outline-primary">
-                                        {{ __('Create') }}
+                                        {{ __('Next') }}
                                     </button>
                                 </div>
                             </div>

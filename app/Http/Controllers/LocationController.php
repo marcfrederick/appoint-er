@@ -285,26 +285,72 @@ class LocationController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create_1(Request $request)
     {
-        Log::info('Showing location creation form', ['user_id' => $request->user()->id]);
-        return response(view('location.create', [
-            'countryCodes' => self::COUNTRY_CODES
-        ]));
+        $this->authorize('create', Location::class);
+        return response(view('location.create_1'));
+    }
+
+    public function create_2(Request $request)
+    {
+        $this->authorize('create', Location::class);
+        $request->validate([
+            'title' => 'required|string|max:191',
+            'description' => 'required|string',
+        ]);
+
+        Session::put('location_info', [
+            'title' => $request->get('title'),
+            'description' => $request->get('description')
+        ]);
+
+        return response(view('location.create_2', ['countryCodes' => self::COUNTRY_CODES]));
+    }
+
+    public function create_3(Request $request)
+    {
+        $this->authorize('create', Location::class);
+        $request->validate([
+            'street' => 'required|string|max:191',
+            'postcode' => 'required|string|max:191',
+            'city' => 'required|string|max:191',
+            'country' => 'required|string|max:3',
+        ]);
+
+        $location_info = Session::remove('location_info');
+        $location_address = [
+            'street' => $request->get('street'),
+            'postcode' => $request->get('postcode'),
+            'city' => $request->get('city'),
+            'country' => $request->get('country'),
+        ];
+
+        $data = array_merge($location_info, $location_address);
+        Session::put('location_data', $data);
+        return view('location.create_3', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = Session::remove('location_data');
+
+        \Validator::make($data, [
+            'title' => 'required|string|max:191',
+            'description' => 'required|string',
+            'street' => 'required|string|max:191',
+            'postcode' => 'required|string|max:191',
+            'city' => 'required|string|max:191',
+            'country' => 'required|string|max:3',
+        ])->validate();
 
         $location = Location::create([
             'title' => $data['title'],

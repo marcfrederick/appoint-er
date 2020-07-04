@@ -26,7 +26,13 @@ Route::view('/privacy', 'privacy')->name('privacy-policy');
 // locations
 Route::get('/locations/search', 'LocationController@search')
     ->name('locations.search');
-Route::resource('locations', 'LocationController');
+
+Route::get('/locations/create_1', 'LocationController@create_1')->name('locations.create_1');
+Route::post('/locations/create_2', 'LocationController@create_2')->name('locations.create_2');
+Route::post('/locations/create_3', 'LocationController@create_3')->name('locations.create_3');
+
+Route::resource('locations', 'LocationController')
+    ->except(['create']);
 
 Route::get('/locations/{location}/slots/create', 'SlotController@create')->name('slots.create');
 Route::post('/locations/{location}/slots/create', 'SlotController@store')->name('slots.store');

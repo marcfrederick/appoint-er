@@ -48,7 +48,7 @@
                                 {{ __('Profile') }}
                             </a>
 
-                            <a class="dropdown-item" href="{{ route('locations.create') }}">
+                            <a class="dropdown-item" href="{{ route('locations.create_1') }}">
                                 {{ __('New location') }}
                             </a>
 
