@@ -8,7 +8,6 @@ use App\Http\Requests\SlotCreateRequest;
 use App\Location;
 use App\Slot;
 use DateTime;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Session;
 
@@ -24,6 +23,7 @@ class SlotController extends Controller
      *
      * @param  Location $location
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Location $location)
     {
