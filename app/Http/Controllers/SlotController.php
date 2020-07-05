@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use _HumbugBox69342eed62ce\Nette\Schema\ValidationException;
+use App\Http\Requests\SlotCreateRequest;
 use App\Location;
 use App\Slot;
 use DateTime;
@@ -34,19 +35,15 @@ class SlotController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  SlotCreateRequest $request
      * @param  \App\Location $location
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Request $request, Location $location)
+    public function store(SlotCreateRequest $request, Location $location)
     {
         $this->authorize('update', $location);
         Log::info('Store slot for location', ['location' => $location]);
-        $request->validate([
-            'date' => 'required|date_format:Y-m-d|after_or_equal:now',
-            'time' => 'required|date_format:H:i',
-            'duration' => 'required|integer',
-        ]);
 
         $start = DateTime::createFromFormat("Y-m-d\TH:i", sprintf("%sT%s", $request->date, $request->time));
         if ($start === false) {
