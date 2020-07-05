@@ -24,23 +24,25 @@ Route::view('/imprint', 'imprint')->name('imprint');
 Route::view('/privacy', 'privacy')->name('privacy-policy');
 
 // locations
-Route::get('/locations/search', 'LocationController@search')
-    ->name('locations.search');
+Route::prefix('locations')->name('locations.')->group(function () {
+    Route::get('search', 'LocationController@search')->name('search');
+    Route::get('create_1', 'LocationController@create_1')->name('create_1');
+    Route::get('create_2', 'LocationController@create_2')->name('create_2');
+    Route::get('create_3', 'LocationController@create_3')->name('create_3');
+});
+Route::resource('locations', 'LocationController')->except(['create']);
 
-Route::get('/locations/create_1', 'LocationController@create_1')->name('locations.create_1');
-Route::get('/locations/create_2', 'LocationController@create_2')->name('locations.create_2');
-Route::get('/locations/create_3', 'LocationController@create_3')->name('locations.create_3');
+Route::prefix('locations/{location}/slots')->name('slots.')->group(function () {
+    Route::get('create', 'SlotController@create')->name('create');
+    Route::post('create', 'SlotController@store')->name('store');
+    Route::delete('{slot}')->name('destroy');
 
-Route::resource('locations', 'LocationController')
-    ->except(['create']);
-
-Route::get('/locations/{location}/slots/create', 'SlotController@create')->name('slots.create');
-Route::post('/locations/{location}/slots/create', 'SlotController@store')->name('slots.store');
-Route::delete('/locations/{location}/slots/{slot}')->name('slots.destroy');
-
-Route::get('/locations/{location}/slots/{slot}/bookings/create', 'BookingController@create')->name('bookings.create');
-Route::post('/locations/{location}/slots/{slot}/bookings/create', 'BookingController@store')->name('bookings.store');
-Route::delete('/locations/{location}/slots/{slot}/bookings/{booking}', 'BookingController@destroy')->name('bookings.destroy');
+});
+Route::prefix('locations/{location}/slots/{slot}/bookings')->name('bookings.')->group(function () {
+    Route::get('create', 'BookingController@create')->name('create');
+    Route::post('create', 'BookingController@store')->name('store');
+    Route::delete('{booking}', 'BookingController@destroy')->name('destroy');
+});
 
 // Profile routes
 Route::resource('users', 'UserController')
