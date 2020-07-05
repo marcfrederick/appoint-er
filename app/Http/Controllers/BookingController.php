@@ -6,7 +6,6 @@ use App\Booking;
 use App\Location;
 use App\Slot;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class BookingController extends Controller
@@ -21,11 +20,11 @@ class BookingController extends Controller
      *
      * @param  Location $location
      * @param  Slot $slot
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function create(Location $location, Slot $slot)
     {
-        return view('booking.create', ['location' => $location, 'slot' => $slot]);
+        return response()->view('booking.create', ['location' => $location, 'slot' => $slot]);
     }
 
     /**
@@ -42,7 +41,8 @@ class BookingController extends Controller
             'slot_id' => $slot->id,
             'user_id' => $request->user()->id,
         ]);
-        return redirect(route('locations.show', $location));
+
+        return response()->redirectToRoute('locations.show', $location);
     }
 
     /**
@@ -59,6 +59,7 @@ class BookingController extends Controller
         $this->authorize('update', $booking->user);
         $booking->delete();
         Session::push('toasts', 'Cancelled booking');
-        return redirect(route('users.show', $booking->user));
+
+        return response()->redirectToRoute('users.show', $booking->user);
     }
 }

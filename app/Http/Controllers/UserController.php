@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response(view('user.index', ['users' => User::paginate()]));
+        return response()->view('user.index', ['users' => User::paginate()]);
     }
 
     /**
@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return response(view('user.show', ['user' => $user]));
+        return response()->view('user.show', ['user' => $user]);
     }
 
     /**
@@ -49,6 +49,6 @@ class UserController extends Controller
         Log::info('Deleted user', ['user_id' => $user->id]);
 
         Session::push('toasts', 'User deleted successfully!');
-        return redirect(RouteServiceProvider::HOME);
+        return response()->redirectTo(RouteServiceProvider::HOME);
     }
 }

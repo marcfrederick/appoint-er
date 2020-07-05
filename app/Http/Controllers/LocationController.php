@@ -266,6 +266,9 @@ class LocationController extends Controller
         'ZWE' => 'Zimbabwe',
     ];
 
+    /**
+     * LocationController constructor.
+     */
     public function __construct()
     {
         $this->authorizeResource(Location::class, 'location');
@@ -278,9 +281,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        return response(view('location.index', [
-            'locations' => Location::paginate(),
-        ]));
+        return response()->view('location.index', ['locations' => Location::paginate()]);
     }
 
     /**
@@ -292,7 +293,7 @@ class LocationController extends Controller
     public function create_1(Request $request)
     {
         $this->authorize('create', Location::class);
-        return response(view('location.create_1'));
+        return response()->view('location.create_1');
     }
 
     /**
@@ -313,13 +314,14 @@ class LocationController extends Controller
             'description' => $request->get('description')
         ]);
 
-        return response(view('location.create_2', ['countryCodes' => self::COUNTRY_CODES]));
+        return response()->view('location.create_2', ['countryCodes' => self::COUNTRY_CODES]);
     }
 
     /**
      * @param  Request $request
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Exception
      */
     public function create_3(Request $request)
     {
@@ -331,7 +333,12 @@ class LocationController extends Controller
             'country' => 'required|string|max:3',
         ]);
 
+        /** @var array<string, mixed>|null $location_info */
         $location_info = Session::remove('location_info');
+        if (is_null($location_info)) {
+            throw new \Exception("Location info missing from session!");
+        }
+
         $location_address = [
             'street' => $request->get('street'),
             'postcode' => $request->get('postcode'),
@@ -341,7 +348,7 @@ class LocationController extends Controller
 
         $data = array_merge($location_info, $location_address);
         Session::put('location_data', $data);
-        return view('location.create_3', $data);
+        return response()->view('location.create_3', $data);
     }
 
     /**
@@ -349,6 +356,7 @@ class LocationController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
@@ -378,7 +386,7 @@ class LocationController extends Controller
         Log::info('Stored location', ['location_id' => $location]);
 
         Session::push('toasts', 'Location created successfully!');
-        return redirect(route('locations.show', $location));
+        return response()->redirectToRoute('locations.show', $location);
     }
 
     /**
@@ -390,21 +398,18 @@ class LocationController extends Controller
     public function show(Location $location)
     {
         Log::info('Showing location', ['location_id' => $location->id]);
-        return response(view('location.show', [
-
-            'location' => $location
-        ]));
+        return response()->view('location.show', ['location' => $location]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Location $location
-     * @return \Illuminate\View\View
+     * @param  \App\Location $location
+     * @return \Illuminate\Http\Response
      */
     public function edit(Location $location)
     {
-        return view('location.edit', [
+        return response()->view('location.edit', [
             'location' => $location,
             'countryCodes' => self::COUNTRY_CODES
         ]);
@@ -444,13 +449,13 @@ class LocationController extends Controller
         Log::info('Edited location', ['location_id' => $location]);
 
         Session::push('toasts', 'Location edited successfully!');
-        return redirect(route('locations.show', $location));
+        return response()->redirectToRoute('locations.show', $location);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Location $location
+     * @param  \App\Location $location
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
@@ -460,12 +465,12 @@ class LocationController extends Controller
 
         Log::info('Deleted location', ['location_id' => $location->id]);
         Session::push('toasts', 'Location deleted successfully!');
-        return redirect(RouteServiceProvider::HOME);
+        return response()->redirectTo(RouteServiceProvider::HOME);
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\View\View
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function search(Request $request)
@@ -477,12 +482,12 @@ class LocationController extends Controller
         $locations = Location::whereRaw("UPPER(title) LIKE '%" . strtoupper($query) . "%'")
             ->paginate();
 
-        return view('location.index', ['locations' => $locations]);
+        return response()->view('location.index', ['locations' => $locations]);
     }
 
     /**
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Support\Collection<Location>
+     * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function jsonSearch(Request $request)
@@ -505,6 +510,7 @@ class LocationController extends Controller
         if (!empty($category) && $category !== '*') {
             $return = $return->where('categories.id', '=', $category);
         }
-        return $return->get();
+
+        return response()->json($return->get());
     }
 }

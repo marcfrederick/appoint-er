@@ -22,13 +22,13 @@ class SlotController extends Controller
      * Show the form for creating a new resource.
      *
      * @param  Location $location
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function create(Location $location)
     {
         $this->authorize('update', $location);
         \Log::info('Create slot for location', ['location' => $location]);
-        return view('slot.create', ['location' => $location]);
+        return response()->view('slot.create', ['location' => $location]);
     }
 
     /**
@@ -63,7 +63,7 @@ class SlotController extends Controller
         ]);
 
         Session::push('toasts', 'Slot created successfully!');
-        return redirect(route('locations.show', $location));
+        return response()->redirectToRoute('locations.show', $location);
     }
 
     /**
