@@ -10,7 +10,7 @@
                     <div class="card-header">{{ __('location.location_address') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('locations.create_3') }}">
+                        <form method="GET" action="{{ route('locations.create_3') }}">
                             @csrf
 
                             <div class="form-group row">

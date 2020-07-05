@@ -28,8 +28,8 @@ Route::get('/locations/search', 'LocationController@search')
     ->name('locations.search');
 
 Route::get('/locations/create_1', 'LocationController@create_1')->name('locations.create_1');
-Route::post('/locations/create_2', 'LocationController@create_2')->name('locations.create_2');
-Route::post('/locations/create_3', 'LocationController@create_3')->name('locations.create_3');
+Route::get('/locations/create_2', 'LocationController@create_2')->name('locations.create_2');
+Route::get('/locations/create_3', 'LocationController@create_3')->name('locations.create_3');
 
 Route::resource('locations', 'LocationController')
     ->except(['create']);

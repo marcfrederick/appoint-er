@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use _HumbugBox69342eed62ce\Nette\Neon\Exception;
 use App\Address;
+use App\Http\Requests\LocationCreateAddressRequest;
+use App\Http\Requests\LocationCreateInfoRequest;
 use App\Location;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
@@ -297,17 +299,13 @@ class LocationController extends Controller
     }
 
     /**
-     * @param  Request $request
+     * @param  LocationCreateInfoRequest $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create_2(Request $request)
+    public function create_2(LocationCreateInfoRequest $request)
     {
         $this->authorize('create', Location::class);
-        $request->validate([
-            'title' => 'required|string|max:191',
-            'description' => 'required|string',
-        ]);
 
         Session::put('location_info', [
             'title' => $request->get('title'),
@@ -318,20 +316,14 @@ class LocationController extends Controller
     }
 
     /**
-     * @param  Request $request
+     * @param  LocationCreateAddressRequest $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Exception
      */
-    public function create_3(Request $request)
+    public function create_3(LocationCreateAddressRequest $request)
     {
         $this->authorize('create', Location::class);
-        $request->validate([
-            'street' => 'required|string|max:191',
-            'postcode' => 'required|string|max:191',
-            'city' => 'required|string|max:191',
-            'country' => 'required|string|max:3',
-        ]);
 
         /** @var array<string, mixed>|null $location_info */
         $location_info = Session::remove('location_info');
