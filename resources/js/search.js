@@ -27,12 +27,13 @@ function errorCallback() {
 }
 
 function ajaxSearch() {
+    const count = 15;
     const inputCat = $('#ajaxInputCategories').val();
     const inputName = $('#ajaxInputName').val();
 
     $.ajax({
         dataType: 'json',
-        url: `/api/locations/ajax-search?query=${inputName}&category=${inputCat}`,
+        url: `/api/locations/search?title=${inputName}&category=${inputCat}&count=${count}`,
         success: successCallback,
         error: errorCallback,
     });

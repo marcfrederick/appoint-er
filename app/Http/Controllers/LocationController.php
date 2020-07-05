@@ -465,23 +465,25 @@ class LocationController extends Controller
      * @return \Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function ajaxSearch(Request $request)
+    public function jsonSearch(Request $request)
     {
         $this->authorize('viewAny', Location::class);
-        $query = $request->input('query');
-        $cat = $request->input('category');
+        $title = $request->input('title', '');
+        $category = $request->input('category', '');
+        $count = $request->input('count', 15);
 
-        Log::info('Performing ajax search', ['user_id' => $request->user(), 'query' => $query, 'category_?' => $cat]);
+        Log::info('Performing ajax search', ['user_id' => $request->user(), 'title' => $title, 'category' => $category]);
         $return = Location::select(['locations.id', 'locations.title', 'locations.description'])
             ->leftJoin('category_location', 'category_location.location_id', '=', 'locations.id')
             ->leftJoin('categories', 'category_location.category_id', '=', 'categories.id')
-            ->limit(15);
+            ->orderBy('locations.updated_at', 'desc')
+            ->limit($count);
 
-        if (!is_null($query) && !empty($query)) {
-            $return = $return->whereRaw("UPPER(title) LIKE '%" . strtoupper($query) . "%'");
+        if (!empty($title)) {
+            $return = $return->whereRaw("UPPER(title) LIKE '%" . strtoupper($title) . "%'");
         }
-        if (!is_null($cat) && !empty($cat) && $cat !== '*') {
-            $return = $return->where('categories.id', '=', $cat);
+        if (!empty($category) && $category !== '*') {
+            $return = $return->where('categories.id', '=', $category);
         }
         return $return->get();
     }
