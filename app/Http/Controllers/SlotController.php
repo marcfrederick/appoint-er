@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use _HumbugBox69342eed62ce\Nette\Schema\ValidationException;
 use App\Location;
 use App\Slot;
 use DateTime;
@@ -48,12 +49,17 @@ class SlotController extends Controller
         ]);
 
         $start = DateTime::createFromFormat("Y-m-d\TH:i", sprintf("%sT%s", $request->date, $request->time));
+        if ($start === false) {
+            Log::error(sprintf("Failed to convert '%sT%s'.", $request->date, $request->time));
+            throw new ValidationException("Failed to convert given date/time");
+        }
+
         Log::debug($start->format('Y-m-d H:i:s'));
         Slot::create([
             'start' => $start->format('Y-m-d H:i:s'),
             'duration' => $request->duration,
             'location_id' => $request->location->id,
-            'user_id' => \Auth::user()->id,
+            'user_id' => $request->user()->id,
         ]);
 
         Session::push('toasts', 'Slot created successfully!');

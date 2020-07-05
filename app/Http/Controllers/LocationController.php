@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use _HumbugBox69342eed62ce\Nette\Neon\Exception;
 use App\Address;
 use App\Location;
 use App\Providers\RouteServiceProvider;
@@ -294,6 +295,11 @@ class LocationController extends Controller
         return response(view('location.create_1'));
     }
 
+    /**
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function create_2(Request $request)
     {
         $this->authorize('create', Location::class);
@@ -310,6 +316,11 @@ class LocationController extends Controller
         return response(view('location.create_2', ['countryCodes' => self::COUNTRY_CODES]));
     }
 
+    /**
+     * @param  Request $request
+     * @return \Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function create_3(Request $request)
     {
         $this->authorize('create', Location::class);
@@ -402,9 +413,10 @@ class LocationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Location $location
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Location $location
      * @return \Illuminate\Http\RedirectResponse
+     * @throws Exception If the location's address is missing for some reason.
      */
     public function update(Request $request, Location $location)
     {
@@ -414,7 +426,15 @@ class LocationController extends Controller
             'title' => $data['title'],
             'description' => $data['description'],
         ]);
-        $location->address->update([
+
+        $address = $location->address;
+        if (is_null($address)) {
+            // This should never actually happen, as location->address is a 1-to-1 relationship
+            // but better safe than sorry.
+            Log::error("Address for location {$location->id} is missing.");
+            throw new Exception('Address for this location is missing and couldn\'t be updated.');
+        }
+        $address->update([
             'street' => $data['street'],
             'postcode' => $data['postcode'],
             'city' => $data['city'],
@@ -461,8 +481,8 @@ class LocationController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\View\View
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Support\Collection<Location>
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function jsonSearch(Request $request)

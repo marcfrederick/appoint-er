@@ -36,7 +36,6 @@ class UserPolicy
      * Determine whether the user can update the user.
      *
      * @param  \App\User $user
-     * @param  \App\Location $location
      * @return mixed
      */
     public function update(User $user)

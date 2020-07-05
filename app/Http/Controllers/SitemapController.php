@@ -7,6 +7,9 @@ use App\User;
 
 class SitemapController extends Controller
 {
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return response()
@@ -14,6 +17,9 @@ class SitemapController extends Controller
             ->header('Content-Type', 'text/xml');
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function locations()
     {
         return response()
@@ -21,6 +27,9 @@ class SitemapController extends Controller
             ->header('Content-Type', 'text/xml');
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function users()
     {
         return response()

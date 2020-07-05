@@ -58,8 +58,9 @@ class User extends Authenticatable
      */
     public function isCurrent()
     {
+        /** @var User|null $auth_user */
         $auth_user = \Auth::user();
-        return isset($auth_user) && $this->id === $auth_user->id;
+        return !is_null($auth_user) && $this->id === $auth_user->id;
     }
 
     /**
