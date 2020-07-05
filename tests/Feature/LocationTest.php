@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use App\Address;
 use App\Location;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -27,10 +28,8 @@ class LocationTest extends TestCase
      */
     public function testCreate()
     {
-        $this->markTestSkipped();
         $user = factory(User::class)->create();
-
-        $response = $this->actingAs($user)->get(route('locations.create'));
+        $response = $this->actingAs($user)->get(route("locations.create_1"));
         $response->assertStatus(200);
     }
 
@@ -39,8 +38,7 @@ class LocationTest extends TestCase
      */
     public function testCreateGuest()
     {
-        $this->markTestSkipped();
-        $response = $this->get(route('locations.create'));
+        $response = $this->get(route("locations.create_1"));
         $response->assertStatus(403);
     }
 
@@ -49,7 +47,6 @@ class LocationTest extends TestCase
      */
     public function testStore()
     {
-        $this->markTestSkipped();
         $user = factory(User::class)->create();
         $data = [
             'title' => 'My test location',
@@ -60,7 +57,10 @@ class LocationTest extends TestCase
             'country' => 'DEU',
         ];
 
-        $response = $this->actingAs($user)->followingRedirects()->post(route('locations.store'), $data);
+        $response = $this->withSession(['location_data' => $data])
+            ->actingAs($user)
+            ->followingRedirects()
+            ->post(route('locations.store'), $data);
         $response->assertStatus(200);
 
         // Validate that the location was stored correctly.
@@ -88,7 +88,9 @@ class LocationTest extends TestCase
             'country' => 'DEU',
         ];
 
-        $response = $this->post(route('locations.store'), $data);
+        $response = $this->withSession(['location_data' => $data])
+            ->followingRedirects()
+            ->post(route('locations.store'), $data);
         $response->assertStatus(403);
     }
 
@@ -109,9 +111,6 @@ class LocationTest extends TestCase
      */
     public function testDestroyOwner()
     {
-        # FIXME
-        $this->markTestSkipped('Returns 403 for some reason');
-
         $user = factory(User::class)->create();
         $location = factory(Location::class)->create();
 
@@ -120,8 +119,11 @@ class LocationTest extends TestCase
         // We should probably find a way to make this relationship explicit.
         $this->assertEquals($user->id, $location->user_id);
 
-        $response = $this->actingAs($user)->delete(route('locations.destroy', $location));
-        $response->assertStatus(200);
+        $this->assertEquals(1, Location::count());
+        $this->actingAs($user)
+            ->followingRedirects()
+            ->delete(route('locations.destroy', $location))
+            ->assertStatus(200);
         $this->assertEquals(0, Location::count());
     }
 
@@ -156,5 +158,25 @@ class LocationTest extends TestCase
     {
         $response = $this->get(route('locations.search', ['query' => 'foo']));
         $response->assertStatus(200);
+    }
+
+    public function testJsonSearch()
+    {
+        $user = factory(User::class)->create();
+        Location::create([
+            'title' => 'a',
+            'description' => 'b',
+            'address_id' => Address::create([
+                'street' => 'c',
+                'postcode' => 'd',
+                'city' => 'e',
+                'country' => 'DEU',
+            ])->id,
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->get(route('locations.ajax-search'));
+        $response->assertStatus(200);
+        $response->assertJsonCount(1);
     }
 }

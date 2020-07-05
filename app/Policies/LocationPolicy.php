@@ -72,7 +72,7 @@ class LocationPolicy
      */
     public function update(User $user, Location $location)
     {
-        return $user->id === $location->user_id;
+        return $user->id === $location->user->id;
     }
 
     /**
@@ -84,7 +84,7 @@ class LocationPolicy
      */
     public function delete(User $user, Location $location)
     {
-        return $user->id === $location->user_id;
+        return $user->id === $location->user->id;
     }
 
     /**
@@ -96,7 +96,7 @@ class LocationPolicy
      */
     public function restore(User $user, Location $location)
     {
-        return $user->id === $location->user_id;
+        return $user->id === $location->user->id;
     }
 
     /**
@@ -108,6 +108,6 @@ class LocationPolicy
      */
     public function forceDelete(User $user, Location $location)
     {
-        return $user->id === $location->user_id;
+        return $user->id === $location->user->id;
     }
 }

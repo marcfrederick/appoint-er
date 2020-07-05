@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 // Misc routes
-Route::get('/', 'IndexController@show');
+Route::get('/', 'IndexController@show')->name('home');
 Route::view('/imprint', 'imprint')->name('imprint');
 Route::view('/privacy', 'privacy')->name('privacy-policy');
 
