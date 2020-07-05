@@ -14,6 +14,10 @@ class LocationTest extends TestCase
 {
     use RefreshDatabase;
 
+    /*
+     * INDEX
+     */
+
     /**
      * Test that everyone can view the list of locations.
      */
@@ -22,6 +26,10 @@ class LocationTest extends TestCase
         $response = $this->get(route('locations.index'));
         $response->assertStatus(200);
     }
+
+    /*
+     * CREATE
+     */
 
     /**
      * Test that authenticated users can view the location creation form.
@@ -41,6 +49,10 @@ class LocationTest extends TestCase
         $response = $this->get(route("locations.create_1"));
         $response->assertStatus(403);
     }
+
+    /*
+     * STORE
+     */
 
     /**
      * Test that authenticated users can create new locations.
@@ -94,37 +106,40 @@ class LocationTest extends TestCase
         $response->assertStatus(403);
     }
 
+    /*
+     * SHOW
+     */
+
     /**
      * Test that everyone can location details.
      */
     public function testShow()
     {
-        factory(User::class)->create();
+        Util::createUser();
         $location = factory(Location::class)->create();
 
         $response = $this->get(route('locations.show', $location));
         $response->assertStatus(200);
     }
 
+    /*
+     * DESTROY
+     */
+
     /**
      * Test that the owner can delete his own locations.
      */
     public function testDestroyOwner()
     {
-        $user = factory(User::class)->create();
-        $location = factory(Location::class)->create();
-
-        // Make sure the created location is actually owned by the previously created user.
-        // This is an implementation detail of the factory but necessary for the following tests.
-        // We should probably find a way to make this relationship explicit.
-        $this->assertEquals($user->id, $location->user_id);
+        $location = Util::createLocation(null);
 
         $this->assertEquals(1, Location::count());
-        $this->actingAs($user)
+        $this->actingAs($location->user)
             ->followingRedirects()
             ->delete(route('locations.destroy', $location))
             ->assertStatus(200);
-        $this->assertEquals(0, Location::count());
+
+        self::assertFalse($location->exists());
     }
 
     /**
@@ -132,13 +147,13 @@ class LocationTest extends TestCase
      */
     public function testDestroyAdmin()
     {
-        factory(User::class)->create();
-        $location = factory(Location::class)->create();
+        $location = Util::createLocation(null);
         $admin = Util::createAdmin();
 
         $response = $this->actingAs($admin)->followingRedirects()->delete(route('locations.destroy', $location));
         $response->assertStatus(200);
-        $this->assertEquals(0, Location::count());
+
+        self::assertFalse($location->exists());
     }
 
     /**
@@ -146,13 +161,17 @@ class LocationTest extends TestCase
      */
     public function testDestroyGuest()
     {
-        factory(User::class)->create();
-        $location = factory(Location::class)->create();
+        $location = Util::createLocation(null);
 
         $response = $this->delete(route('locations.destroy', $location));
         $response->assertStatus(403);
-        $this->assertNotEquals(0, Location::count());
+
+        self::assertTrue($location->exists());
     }
+
+    /*
+     * SEARCH
+     */
 
     public function testSearch()
     {
@@ -160,9 +179,13 @@ class LocationTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /*
+     * JSON SEARCH
+     */
+
     public function testJsonSearch()
     {
-        $user = factory(User::class)->create();
+        $user = Util::createUser();
         Location::create([
             'title' => 'a',
             'description' => 'b',
