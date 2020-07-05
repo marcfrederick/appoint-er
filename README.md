@@ -28,6 +28,9 @@ Der deploy auf die [production environment](https://appoint-er.herokuapp.com) m�
     <img src=".github/resources/deployment.svg" width="80%" alt="Deployment pipeline">
 </div>
 
+#### Webserver
+Für verbesserte Performance verwenden auf Heroku nginx anstatt eines Apache-Servers und haben `gzip` aktiviert.
+
 #### Datenbank
 Als Datenbank verwenden wir eine auf Heroku gehostete Postgres-Instanz.
 Aller Code ist jedoch unabhängig von der Datenbank geschrieben und läuft auch auf einer MySQL Datenbank.
