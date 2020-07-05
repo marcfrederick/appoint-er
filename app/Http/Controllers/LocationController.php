@@ -291,6 +291,7 @@ class LocationController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create_1(Request $request)
     {
@@ -353,15 +354,8 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         $data = Session::remove('location_data');
-
-        \Validator::make($data, [
-            'title' => 'required|string|max:191',
-            'description' => 'required|string',
-            'street' => 'required|string|max:191',
-            'postcode' => 'required|string|max:191',
-            'city' => 'required|string|max:191',
-            'country' => 'required|string|max:3',
-        ])->validate();
+        $rules = array_merge((new LocationCreateInfoRequest)->rules(), (new LocationCreateAddressRequest())->rules());
+        \Validator::validate($data, $rules);
 
         $location = Location::create([
             'title' => $data['title'],
