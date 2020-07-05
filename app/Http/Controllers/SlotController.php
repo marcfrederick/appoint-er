@@ -67,12 +67,13 @@ class SlotController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Slot $slot
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Slot $slot)
+    public function destroy(Location $location, Slot $slot)
     {
-        $this->authorize('update', $slot->location);
+        $this->authorize('update', $location);
         $slot->delete();
+        return response()->redirectToRoute('locations.show', $location);
     }
 }

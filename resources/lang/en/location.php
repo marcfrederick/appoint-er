@@ -25,6 +25,7 @@ return [
     'postcode' => 'Postcode',
     'recently_updated' => 'Recently updated',
     'slot' => 'Slot|Slots',
+    'slot_remove' => 'Remove slot',
     'street' => 'Street',
     'time' => 'Time',
     'title' => 'Title',

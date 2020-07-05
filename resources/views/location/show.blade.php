@@ -46,19 +46,30 @@
                             <td>{{ date_format(date_create($slot->start), 'Y-m-d') }}</td>
                             <td>{{ date_format(date_create($slot->start), 'H:i') }}</td>
                             <td>{{ $slot->duration }} {{ trans_choice('location.minute', $slot->duration) }}</td>
-                            <td class="float-right"><a
-                                    href="{{ route('bookings.create', ['location' => $location, 'slot' => $slot]) }}"
-                                    class="btn btn-primary">{{ __('location.book') }}</a></td>
+                            <td class="float-right">
+                                @if($location->user->id === Auth::id())
+                                    <form class="form-inline" method="POST"
+                                          action="{{ route('slots.destroy', ['location' => $location, 'slot' => $slot]) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                class="btn btn-danger">{{ __('location.slot_remove') }}</button>
+                                    </form>
+                                @else
+                                    <a href="{{ route('bookings.create', ['location' => $location, 'slot' => $slot]) }}"
+                                       class="btn btn-primary">{{ __('location.book') }}</a>
+                                @endif
+                            </td>
                         </tr>
                     @endempty
                 @endforeach
                 </tbody>
             </table>
-        @else
-            <div class="alert alert-info">
-                {{ __('location.no_slots') }}
-            </div>
-        @endif
+            @else
+                <div class="alert alert-info">
+                    {{ __('location.no_slots') }}
+                </div>
+            @endif
 
         <h2>{{ __('location.owner') }}</h2>
         <ul class="list-unstyled">

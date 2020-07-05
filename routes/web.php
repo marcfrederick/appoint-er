@@ -35,7 +35,7 @@ Route::resource('locations', 'LocationController')->except(['create']);
 Route::prefix('locations/{location}/slots')->name('slots.')->group(function () {
     Route::get('create', 'SlotController@create')->name('create');
     Route::post('create', 'SlotController@store')->name('store');
-    Route::delete('{slot}')->name('destroy');
+    Route::delete('{slot}', 'SlotController@destroy')->name('destroy');
 
 });
 Route::prefix('locations/{location}/slots/{slot}/bookings')->name('bookings.')->group(function () {

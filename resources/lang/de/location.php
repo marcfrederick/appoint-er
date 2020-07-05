@@ -25,6 +25,7 @@ return [
     'postcode' => 'Postleitzahl',
     'recently_updated' => 'Kürzlich geändert',
     'slot' => 'Slot|Slots',
+    'slot_remove' => 'Slot löschen',
     'street' => 'Straße',
     'time' => 'Uhrzeit',
     'title' => 'Titel',
