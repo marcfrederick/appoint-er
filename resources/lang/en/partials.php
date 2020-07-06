@@ -11,9 +11,11 @@ return [
     ],
     'header' => [
         'all_users' => 'All Users',
+        'categories' => 'Categories',
         'locations' => 'Locations',
         'login' => 'Login',
         'logout' => 'Logout',
+        'new_category' => 'New Category',
         'new_location' => 'New Location',
         'profile' => 'Profile',
         'register' => 'Register',

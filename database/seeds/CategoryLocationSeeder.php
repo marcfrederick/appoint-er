@@ -1,5 +1,6 @@
 <?php
 
+use App\CategoryLocation;
 use Illuminate\Database\Seeder;
 
 class CategoryLocationSeeder extends Seeder
@@ -11,19 +12,6 @@ class CategoryLocationSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('category_location')->insert([
-            'location_id' => '1',
-            'category_id' => '3'
-        ]);
-
-        DB::table('category_location')->insert([
-            'location_id' => '2',
-            'category_id' => '1'
-        ]);
-
-        DB::table('category_location')->insert([
-            'location_id' => '2',
-            'category_id' => '2'
-        ]);
+        factory(CategoryLocation::class, 50)->create();
     }
 }
