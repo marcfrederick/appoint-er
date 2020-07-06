@@ -15,8 +15,9 @@ class CreateCategoryLocationsTable extends Migration
     {
         Schema::create('category_location', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('location_id')->references('id')->on('locations')->cascadeOnDelete();
-            $table->foreignId('category_id')->references('id')->on('categories')->cascadeOnDelete();
+            $table->timestamps();
+            $table->foreignId('location_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
         });
     }
 

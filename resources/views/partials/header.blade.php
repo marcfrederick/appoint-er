@@ -14,6 +14,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('locations.index') }}">{{ __('partials.header.locations') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('categories.index') }}">{{ __('partials.header.categories') }}</a>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -52,6 +55,12 @@
                             <a class="dropdown-item" href="{{ route('locations.create_1') }}">
                                 {{ __('partials.header.new_location') }}
                             </a>
+
+                            @can('create', \App\Category::class)
+                                <a class="dropdown-item" href="{{ route('categories.create') }}">
+                                    {{ __('partials.header.new_category') }}
+                                </a>
+                            @endcan
 
                             @can('viewAny', \App\User::class)
                                 <a class="dropdown-item" href="{{ route('users.index') }}">

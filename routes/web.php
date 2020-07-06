@@ -49,7 +49,7 @@ Route::resource('users', 'UserController')
     ->only(['show', 'index', 'destroy']);
 
 //categories
-Route::get('/categories', 'CategoryController@index');
+Route::resource('categories', 'CategoryController');
 
 // Sitemap
 Route::get('/sitemap.xml', 'SitemapController@index');

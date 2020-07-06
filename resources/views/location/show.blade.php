@@ -86,10 +86,8 @@
         </ul>
 
         <h2>{{ trans_choice('location.category', $location->categories->count()) }}</h2>
-        <ul class="list-unstyled">
-            @foreach( $location->categories as $cat)
-                <li>{{ $cat->name }}</li>
-            @endforeach
-        </ul>
+        @foreach( $location->categories as $cat)
+            <a class="badge badge-primary" href="{{ route('categories.show', $cat) }}">{{ $cat->name }}</a>
+        @endforeach
     </div>
 @endsection

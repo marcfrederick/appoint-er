@@ -8,7 +8,7 @@ class Category extends Model
 {
     /** @var array<string> */
     protected $fillable = [
-        'name'
+        'name', 'description'
     ];
 
     /**
