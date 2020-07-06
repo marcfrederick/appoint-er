@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use App\Address;
+use App\Category;
 use App\Location;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -59,6 +60,7 @@ class LocationTest extends TestCase
      */
     public function testStore()
     {
+        $category = factory(Category::class)->create();
         $user = factory(User::class)->create();
         $data = [
             'title' => 'My test location',
@@ -67,6 +69,7 @@ class LocationTest extends TestCase
             'city' => 'Barcity',
             'postcode' => '12345',
             'country' => 'DEU',
+            'category' => $category->name,
         ];
 
         $response = $this->withSession(['location_data' => $data])
@@ -83,6 +86,7 @@ class LocationTest extends TestCase
         $this->assertEquals($data['city'], $location->address->city);
         $this->assertEquals($data['postcode'], $location->address->postcode);
         $this->assertEquals($data['country'], $location->address->country);
+        $this->assertEquals($data['category'], $location->categories->first()->name);
         $this->assertEquals($user->id, $location->user_id);
     }
 

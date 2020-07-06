@@ -372,9 +372,12 @@ class LocationController extends Controller
             ])->id,
             'user_id' => $request->user()->id,
         ]);
+
+        /** @var Category $category */
+        $category = Category::firstWhere('name', '=', $data['category']);
         CategoryLocation::create([
             'location_id' => $location->id,
-            'category_id' => Category::firstWhere('name', '=', $data['category'])->id,
+            'category_id' => $category->id,
         ]);
 
         Log::info('Stored location', ['location_id' => $location]);
