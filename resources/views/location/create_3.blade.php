@@ -43,6 +43,11 @@
                                 <div class="col-md-6">{{ $country }}</div>
                             </div>
 
+                            <div class="form-group row">
+                                <div class="col-md-4 text-md-right">{{ trans_choice('location.category', 1) }}</div>
+                                <div class="col-md-6">{{ $category }}</div>
+                            </div>
+
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-outline-primary">
