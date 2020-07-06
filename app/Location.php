@@ -37,6 +37,14 @@ class Location extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function categoryLocation()
+    {
+        return $this->hasMany(CategoryLocation::class);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<Slot>
      */
     public function slots()

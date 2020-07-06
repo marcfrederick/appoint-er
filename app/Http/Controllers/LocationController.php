@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use _HumbugBox69342eed62ce\Nette\Neon\Exception;
 use App\Address;
+use App\Category;
+use App\CategoryLocation;
 use App\Http\Requests\LocationCreateAddressRequest;
 use App\Http\Requests\LocationCreateInfoRequest;
 use App\Location;
@@ -296,7 +298,7 @@ class LocationController extends Controller
     public function create_1(Request $request)
     {
         $this->authorize('create', Location::class);
-        return response()->view('location.create_1');
+        return response()->view('location.create_1', ['categories' => Category::all()]);
     }
 
     /**
@@ -310,7 +312,8 @@ class LocationController extends Controller
 
         Session::put('location_info', [
             'title' => $request->get('title'),
-            'description' => $request->get('description')
+            'description' => $request->get('description'),
+            'category' => $request->get('category'),
         ]);
 
         return response()->view('location.create_2', ['countryCodes' => self::COUNTRY_CODES]);
@@ -350,6 +353,7 @@ class LocationController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Validation\ValidationException
+     * @throws \Throwable
      */
     public function store(Request $request)
     {
@@ -367,6 +371,10 @@ class LocationController extends Controller
                 'country' => $data['country'],
             ])->id,
             'user_id' => $request->user()->id,
+        ]);
+        CategoryLocation::create([
+            'location_id' => $location->id,
+            'category_id' => Category::firstWhere('name', '=', $data['category'])->id,
         ]);
 
         Log::info('Stored location', ['location_id' => $location]);
