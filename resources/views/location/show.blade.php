@@ -47,7 +47,7 @@
                             <td>{{ date_format(date_create($slot->start), 'H:i') }}</td>
                             <td>{{ $slot->duration }} {{ trans_choice('location.minute', $slot->duration) }}</td>
                             <td class="float-right">
-                                @if($location->user->id === Auth::id())
+                                @isCurrentUser($location->user)
                                     <form class="form-inline" method="POST"
                                           action="{{ route('slots.destroy', ['location' => $location, 'slot' => $slot]) }}">
                                         @csrf
