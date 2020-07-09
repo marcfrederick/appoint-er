@@ -37,6 +37,19 @@ class Location extends Model
     }
 
     /**
+     * @param  String $categoryName
+     * @return void
+     */
+    public function addCategoryByName(string $categoryName)
+    {
+        $category = Category::firstWhere('name', '=', $categoryName);
+        CategoryLocation::create([
+            'location_id' => $this->id,
+            'category_id' => $category->id,
+        ]);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function categoryLocation()
