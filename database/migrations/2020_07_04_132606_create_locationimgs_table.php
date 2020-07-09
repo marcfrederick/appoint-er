@@ -17,6 +17,7 @@ class CreateLocationImgsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('src');
+            $table->foreignId('location_id')->constrained()->cascadeOnDelete();
         });
     }
 
