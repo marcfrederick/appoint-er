@@ -55,7 +55,7 @@ class Location extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Collection<Slot>
      */
-    public function futureAvailableSlots()
+    public function getFutureAvailableSlotsAttribute()
     {
         return $this->slots()
             ->whereDate('start', '>', now())
