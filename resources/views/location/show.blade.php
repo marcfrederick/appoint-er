@@ -25,8 +25,14 @@
             </div>
         @endcanany
 
-        <h1 class="display-4">{{ $location->title  }}</h1>
-        <p class="lead">{{ $location->description }}</p>
+        @if($location->images->first() !== null)
+            <img src="{{$location->images->first()->src }}"
+                 alt="img of {{ $location->title }}"/> <!-- TODO: size -->
+            @endif
+
+
+            <h1 class="display-4">{{ $location->title  }}</h1>
+            <p class="lead">{{ $location->description }}</p>
 
         <h2>{{ trans_choice('location.slot', $location->futureAvailableSlots->count()) }}</h2>
         @if($location->futureAvailableSlots->isNotEmpty())
