@@ -4,7 +4,7 @@ require('./cookie');
 // Confirmation handlers
 $('.confirmable').click(function() {
     const message = $(this).attr('data-confirm');
-    confirm(message);
+    return confirm(message);
 });
 
 // Toast handlers
