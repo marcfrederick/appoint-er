@@ -1,10 +1,12 @@
 function makeResultCardHTML(result) {
     const targetURL = `/locations/${result.id}`;
+    console.log(result)
     return `
 <div class="card">
     <div class="card-body">
         <a href="${targetURL}" class="card-title">${result.title}</a>
         <p class="card-text">${result.description}</p>
+        <img src="${result.src}" class="card-img" size="200px"/>
     </div>
     <div class="card-footer text-center">
         <a class="btn btn-outline-primary" href="${targetURL}">Make Appointment</a>

@@ -18,6 +18,5 @@ $factory->define(Location::class, function (Faker $faker) {
         'description' => $faker->realText(250),
         'address_id' => factory(App\Address::class),
         'user_id' => \App\User::inRandomOrder()->first(),
-        'img_id' => '1'
     ];
 });

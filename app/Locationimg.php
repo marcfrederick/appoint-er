@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Locationimg extends Model
 {
     protected $fillable = [
+        'location_id',
         'src'
     ];
 
     public function locations()
     {
-        return $this->hasMany(Location::class);
+        return $this->belongsTo(Location::class);
     }
 
 }
