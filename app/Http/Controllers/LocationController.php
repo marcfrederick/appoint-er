@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use _HumbugBox69342eed62ce\Nette\Neon\Exception;
 use App\Address;
 use App\Category;
+use App\CategoryLocation;
 use App\Http\Requests\LocationCreateAddressRequest;
 use App\Http\Requests\LocationCreateInfoRequest;
 use App\Location;
@@ -371,7 +372,13 @@ class LocationController extends Controller
             ])->id,
             'user_id' => $request->user()->id,
         ]);
-        $location->addCategoryByName($data['category']);
+
+        /** @var Category $category */
+        $category = Category::firstWhere('name', '=', $data['category']);
+        CategoryLocation::create([
+            'location_id' => $location->id,
+            'category_id' => $category->id,
+        ]);
 
         Log::info('Stored location', ['location_id' => $location]);
 
