@@ -28,8 +28,8 @@
         <h1 class="display-4">{{ $location->title  }}</h1>
         <p class="lead">{{ $location->description }}</p>
 
-        <h2>{{ trans_choice('location.slot', $location->futureAvailableSlots()->count()) }}</h2>
-        @if($location->futureAvailableSlots()->isNotEmpty())
+        <h2>{{ trans_choice('location.slot', $location->futureAvailableSlots->count()) }}</h2>
+        @if($location->futureAvailableSlots->isNotEmpty())
             <table class="table table-striped">
                 <thead class="thead-light">
                 <tr>
@@ -40,7 +40,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($location->futureAvailableSlots() as $slot)
+                @foreach($location->futureAvailableSlots as $slot)
                     @empty($slot->booking)
                         <tr>
                             <td>{{ date_format(date_create($slot->start), 'Y-m-d') }}</td>
