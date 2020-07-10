@@ -5,7 +5,23 @@
 
 ## Zusammenfassung der Beschreibung der Funktionalität
 
+* Accounts erstellen.
+* Log-in.
+* Orte erstellen.
+* Termine buchen.
+* Reservierte Termine einsehen.
+* Orte durchsuchen.
+* Kategorien anzeigen.
+* Admin kann alle Nutzer sehen.
+
+
+
+
 ## Wow-Faktor der Applikation
+
+Appoint.er hat zwei Suchen, eine im Header der Seite, die die direkte Suche von Orten ermöglicht.
+Zusätzlich ist eine zweite Suche im unteren Teil der Homepage vorhanden, die bei keiner Eingabe einen Ausschnitt der vorhandenen Orte zeigt
+und bei einer Eingabe oder Kategorieauswahl die angezeigten Orte in Echtzeit anpasst.
 
 ## Technische Implementierung
 ### Views
