@@ -29,7 +29,18 @@ und bei einer Eingabe oder Kategorieauswahl die angezeigten Orte in Echtzeit anp
 ### Sass
 ### Models
 ### Controller
-### Authentication & Authorization
+
+### Authentifizierung
+Wir verwenden die bereits von Laravel zur Verfügung gestellte Authentifizierung.
+Diese haben wir um die Möglichkeit Rollen hinzuzufügen erweitert.
+Mögliche Rollen sind `basic` und `admin`.   
+
+### Authorization
+Die Autorisierung von Ressourcen ist mittels Policies implementiert.
+Die `LocationPolicy` verwendet weiterhin eine `before()`-Methode die den Nutzern mit der `admin`-Rolle alles erlaubt.  
+Basierend auf dem Typen der `$user` Parameters der Methoden werden nicht-eingeloggte Nutzer akzeptiert (`?User`) oder abgelehnt (`User`). 
+
+Diese Policies sind auf Basis unserer ResourceController generiert und sind daher automatisch auf deren Standardmethoden gemapped.
 
 ### Lokale Testläufe
 Unser Code ist auf GitHub gehosted und wird bei jedem Push oder Pull Request mittels GitHub Actions getestet.
