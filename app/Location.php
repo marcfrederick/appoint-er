@@ -42,7 +42,9 @@ class Location extends Model
      */
     public function addCategoryByName(string $categoryName)
     {
+        /** @var Category|null $category */
         $category = Category::firstWhere('name', '=', $categoryName);
+        throw_if(is_null($category), new \Exception('Category not found'));
         CategoryLocation::create([
             'location_id' => $this->id,
             'category_id' => $category->id,

@@ -17,7 +17,7 @@ class LocationPolicy
      *
      * @param  \App\User  $user
      * @param  string  $ability
-     * @return mixed
+     * @return bool|null
      */
     public function before(User $user, string $ability)
     {
@@ -33,7 +33,7 @@ class LocationPolicy
      * Determine whether the user can view any models.
      *
      * @param  \App\User  $user
-     * @return mixed
+     * @return bool
      */
     public function viewAny(?User $user)
     {
@@ -45,7 +45,7 @@ class LocationPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Location  $location
-     * @return mixed
+     * @return bool
      */
     public function view(?User $user, Location $location)
     {
@@ -56,7 +56,7 @@ class LocationPolicy
      * Determine whether the user can create models.
      *
      * @param  \App\User  $user
-     * @return mixed
+     * @return bool
      */
     public function create(User $user)
     {
@@ -68,7 +68,7 @@ class LocationPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Location  $location
-     * @return mixed
+     * @return bool
      */
     public function update(User $user, Location $location)
     {
@@ -80,7 +80,7 @@ class LocationPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Location  $location
-     * @return mixed
+     * @return bool
      */
     public function delete(User $user, Location $location)
     {
@@ -92,7 +92,7 @@ class LocationPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Location  $location
-     * @return mixed
+     * @return bool
      */
     public function restore(User $user, Location $location)
     {
@@ -104,7 +104,7 @@ class LocationPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Location  $location
-     * @return mixed
+     * @return bool
      */
     public function forceDelete(User $user, Location $location)
     {
