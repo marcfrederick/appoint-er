@@ -9,10 +9,11 @@
 * Log-in.
 * Orte erstellen.
 * Termine buchen.
-* Reservierte Termine einsehen.
+* Gebuchte Termine einsehen.
 * Orte durchsuchen.
 * Kategorien anzeigen.
 * Admin kann alle Nutzer sehen.
+* Termine für den eigenen Ort einsehen.
 
 
 
@@ -22,9 +23,22 @@
 Appoint.er hat zwei Suchen, eine im Header der Seite, die die direkte Suche von Orten ermöglicht.
 Zusätzlich ist eine zweite Suche im unteren Teil der Homepage vorhanden, die bei keiner Eingabe einen Ausschnitt der vorhandenen Orte zeigt
 und bei einer Eingabe oder Kategorieauswahl die angezeigten Orte in Echtzeit anpasst.
+Falls die Kategorie nicht ausgewählt wird, zeigt es die entsprechenden Orte aller Kategorien an.
 
 ## Technische Implementierung
+Eine exakte Beschreibung unserer Implementierung aufgeteilt nach:
 ### Views
+Unsere Views haben wir in folgender Ordnerstruktur eingeteilt: 
+* Auth: Hier befinden sich die Views zur Authentisierung wie die Login-View und die Registierungs-View.
+    * Passwords: In diesem Unterorder befindet sich die View zum Zurücksetzen des Passworts.
+* Booking: Dieser Ordner beinhaltet die View zum Buchen von Terminen.
+* Category: Hier sind die Views zum Erstellen von Kategorien, Bearbeiten von Kateogorien sowie die Übersicht aller Kategorien und die
+View der einzelnen Kategorien.
+* Layouts: Hier ist das Layout der Webapplikation. Alle anderen Views werden in als Content in diese View geladen.
+* Location: Die Views zum Erzeugen von Orten sowie die View zum Bearbeiten, die View für die Übersicht aller Orte und die View zum Anzeigen
+der einzelnen Orte.
+* Pagination: ???
+* Partials: Hier befinden sich weitere Teile die öfters Vorkommen wie der Header, Footer, Cookie-Meldung und die einzelnen Karten
 ### JavaScripts
 ### Sass
 ### Models
