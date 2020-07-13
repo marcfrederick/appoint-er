@@ -39,7 +39,13 @@ View der einzelnen Kategorien.
 * Location: Die Views zum Erzeugen von Orten sowie die View zum Bearbeiten, die View für die Übersicht aller Orte und die View zum Anzeigen
 der einzelnen Orte.
 * Pagination: ???
-* Partials: Hier befinden sich weitere Teile die öfters Vorkommen wie der Header, Footer, Cookie-Meldung und die einzelnen Karten
+* Partials: Hier befinden sich weitere Teile die öfters Vorkommen wie der Header, Footer, Cookie-Meldung und andere wiederverwendete Seitenausschnitte.
+* Sitemap: ???
+* Slot: In diesem Ordner ist die View zur Erzeugung eines neuen Zeitslots, also wann Termine gebucht werden können.
+* User: Alle Nutzerrelatierten Views sind hier.
+
+Impressum, Homepage und die Datenschutzerklärung sind direkt im Views Ordner.
+Durch diese Ordnerstruktur ist es möglich die Views in einem konsequenten Schema zu benennen wie: index, show, create, edit.
 
 ### Mix
 JavaScript und CSS wird mittels Laravel Mix aus den dateien in `resources/js` und `resources/scss` kompiliert. 
@@ -117,3 +123,10 @@ Aller Code ist jedoch unabhängig von der Datenbank geschrieben und läuft auch 
 Bei jedem Release wird, sowohl auf `unstable` als auch auf `production` wird die Datenbank gelöscht und mit neuen Seed-Daten befüllt (Siehe [hier](Procfile)).
 
 ## SEO Maßnahmen
+Unsere URLs sind, mit Ausnahme der Formularseiten, nur 2 Verschachtelungen lang. \
+Unsere Titel sind immer in h1-Tags geschrieben sowie deren Unterüberschirften in h2-Tags. \
+Zusätzlich finden sich Grafiken und Bilder auf der Homepage und bei den verschiedenen Orten. \
+Wir haben unsere Webapplikation responsive gestaltet um mobilen Nutzern eine angenehme Erfahrung zu ermöglichen. \
+Durch verschiedenste Links ist es möglich sich durch die Seite zu navigieren. Über ein Nutzer zu einem Ort zu einer Kategorie zu einem anderen Ort wieder zu einem anderen Nutzer. \
+Unsere Seite kann direkt via Twitter geteilt werden. \
+Wir benutzen HTTPS, eine Sitemap und Meta Tags. \
