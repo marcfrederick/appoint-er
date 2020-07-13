@@ -44,10 +44,10 @@ class Location extends Model
         return $this->hasMany(Locationimg::class);
     }
 
-
     /**
      * @param  String $categoryName
      * @return void
+     * @throws \Throwable
      */
     public function addCategoryByName(string $categoryName)
     {
