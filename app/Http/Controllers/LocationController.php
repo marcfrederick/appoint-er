@@ -10,6 +10,7 @@ use App\CategoryLocation;
 use App\Http\Requests\LocationCreateAddressRequest;
 use App\Http\Requests\LocationCreateInfoRequest;
 use App\Location;
+use App\Locationimg;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -310,10 +311,13 @@ class LocationController extends Controller
     {
         $this->authorize('create', Location::class);
 
+        $path = $request->file('image')->store('locationimages','public');
+
         Session::put('location_info', [
             'title' => $request->get('title'),
             'description' => $request->get('description'),
             'category' => $request->get('category'),
+            'path' => '/locationimages/'.$path
         ]);
 
         return response()->view('location.create_2', ['countryCodes' => self::COUNTRY_CODES]);
@@ -371,6 +375,11 @@ class LocationController extends Controller
                 'country' => $data['country'],
             ])->id,
             'user_id' => $request->user()->id,
+        ]);
+
+        Locationimg::create([
+            'src' => $data['path'],
+            'location_id' => $location->id,
         ]);
 
         /** @var Category $category */

@@ -29,4 +29,5 @@ return [
     'street' => 'Street',
     'time' => 'Time',
     'title' => 'Title',
+    'image' => 'Image'
 ];
