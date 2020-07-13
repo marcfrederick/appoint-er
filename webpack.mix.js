@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+require('laravel-mix-purgecss');
 
 /*
  |--------------------------------------------------------------------------
@@ -15,4 +16,5 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/search.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .js('node_modules/popper.js/dist/popper.js', 'public/js')
-    .sourceMaps();
+    .sourceMaps()
+    .purgeCss({enabled: true});

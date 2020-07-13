@@ -30,12 +30,25 @@ und bei einer Eingabe oder Kategorieauswahl die angezeigten Orte in Echtzeit anp
 ### Models
 ### Controller
 
+### Datenbank
+> ℹ️ Bei jedem Deploy wird die Datenbank geleert und mittels Migrationen und Seedern neu asufgesetzt. 
+
+Die gesamte Datenbank wird mittels Migrationen erstellt.
+Es existieren Seeder und Factories, mittels derer die Datenbank zu Test- und Vorführzwecken mit Beispieldaten bespielt werden kann.
+
+### Nutzer Eingaben
+Nutzereingaben werden mittels in eigenen Requests definierten Regeln validiert.
+Bei fehlerhaften Eingaben wird der Nutzer mittels Fehlermeldungen auf diese hingewiesen. 
+
 ### Authentifizierung
 Wir verwenden die bereits von Laravel zur Verfügung gestellte Authentifizierung.
 Diese haben wir um die Möglichkeit Rollen hinzuzufügen erweitert.
-Mögliche Rollen sind `basic` und `admin`.   
+Mögliche Rollen sind `basic` und `admin`.
+Implizit existiert weiterhin eine dritte Gruppe `guest` für nicht registrierte Besucher der Website.
 
 ### Authorization
+> ✅ Korrektheit der Authorization ist mittels Tests sichergestellt.
+
 Die Autorisierung von Ressourcen ist mittels Policies implementiert.
 Die `LocationPolicy` verwendet weiterhin eine `before()`-Methode die den Nutzern mit der `admin`-Rolle alles erlaubt.  
 Basierend auf dem Typen der `$user` Parameters der Methoden werden nicht-eingeloggte Nutzer akzeptiert (`?User`) oder abgelehnt (`User`). 
