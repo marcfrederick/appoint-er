@@ -116,7 +116,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/marcfrederick/Code/PhpstormProjects/htwg-web-tech-dynamic/node_modules/popper.js/dist/popper.js */"./node_modules/popper.js/dist/popper.js");
+module.exports = __webpack_require__(/*! D:\studium\4sem\WeTe\htwg-web-tech-dynamic\node_modules\popper.js\dist\popper.js */"./node_modules/popper.js/dist/popper.js");
 
 
 /***/ })
