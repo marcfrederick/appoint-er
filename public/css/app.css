@@ -350,28 +350,28 @@ a > code {
 }
 
 @media (min-width: 576px) {
-  
+
   .container {
     max-width: 540px;
   }
 }
 
 @media (min-width: 768px) {
-  
+
   .container {
     max-width: 720px;
   }
 }
 
 @media (min-width: 992px) {
-  
+
   .container {
     max-width: 960px;
   }
 }
 
 @media (min-width: 1200px) {
-  
+
   .container {
     max-width: 1140px;
   }
@@ -413,6 +413,18 @@ a > code {
   flex-basis: 0;
   flex-grow: 1;
   min-width: 0;
+  max-width: 100%;
+}
+
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
   max-width: 100%;
 }
 
@@ -1878,7 +1890,7 @@ a.text-light:focus {
     text-decoration: underline;
   }
 
-  
+
   blockquote {
     border: 1px solid #adb5bd;
     page-break-inside: avoid;
