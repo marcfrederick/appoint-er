@@ -42,7 +42,18 @@ der einzelnen Orte.
 ### JavaScripts
 ### Sass
 ### Models
+Es existiert ein Model für alle für uns relevanten Tabellen in der Datenbank.
+Wir verwenden grundsätzlich Models zum Datenbankzugriff, um flexibel bezüglich des dahinter-stehenden Datenbanksystems zu sein.
+
+Jedes Model definiert seine `$fillable` und stellt Methoden für mögliche Relationen bereit.
+Weiterhin definieren einige Models eigene Accessors und Mutators mittels der magischen `set...Attribute` und `get...Attribute` Methoden. 
+
 ### Controller
+Wir verwenden, wann immer möglich ResourceController.
+Wo dies nicht möglich ist, folgen die Controller trotzdem den zugrunde liegenden Models.
+Die Ausnahme bilden hier der `SitemapController` und `IndexController`, denen kein spezifisches Model zugrunde liegt.
+
+Die Eingabe-Validierung von Formulardaten ist nicht in den Controllern selber, sondern mittels eigener Request-Klassen realisiert die vom Laravel Service-Container anhand der Parameter-Typisierung injiziert werden.  
 
 ### Datenbank
 > ℹ️ Bei jedem Deploy wird die Datenbank geleert und mittels Migrationen und Seedern neu asufgesetzt. 
