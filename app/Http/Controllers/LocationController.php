@@ -367,6 +367,7 @@ class LocationController extends Controller
     {
         $data = Session::remove('location_data');
         $rules = array_merge((new LocationCreateInfoRequest)->rules(), (new LocationCreateAddressRequest())->rules());
+        unset($rules['image']);  // Image is not in the request but passed through the Session.
         \Validator::validate($data, $rules);
 
         $location = Location::create([
