@@ -27,6 +27,7 @@ Falls die Kategorie nicht ausgewählt wird, zeigt es die entsprechenden Orte all
 
 ## Technische Implementierung
 Eine exakte Beschreibung unserer Implementierung aufgeteilt nach:
+
 ### Views
 Unsere Views haben wir in folgender Ordnerstruktur eingeteilt: 
 * Auth: Hier befinden sich die Views zur Authentisierung wie die Login-View und die Registierungs-View.
@@ -39,8 +40,30 @@ View der einzelnen Kategorien.
 der einzelnen Orte.
 * Pagination: ???
 * Partials: Hier befinden sich weitere Teile die öfters Vorkommen wie der Header, Footer, Cookie-Meldung und die einzelnen Karten
-### JavaScripts
-### Sass
+
+### Mix
+JavaScript und CSS wird mittels Laravel Mix aus den dateien in `resources/js` und `resources/scss` kompiliert. 
+
+#### JavaScript
+Unser JavaScript Code ist auf mehrere Dateien aufgeteilt.
+Da diese mittels Laravel Mix kompiliert und minimiert werden inkludieren wir, für bessere Debugability, Source Maps.
+
+Die `app.css` aktiviert alle Toasts (durch Bootstrap definiert) und definiert eine `confirmable` CSS Klasse, die das einfache Einbinden von Bestätigungsdialogen erlaubt.
+Um eine Element zu schützen reicht es ihm diese Klasse zuzuweisen und mittels des `data-confirm` Attributs eine Meldung zu wählen.
+```html
+<a href="#" class="confirmable" data-confirm="Are you sure?"/>
+```    
+
+Die `search.js` implementiert unsere AJAX-Suche und wird ausschließlich auf der Startseite eingebunden, da die Suche nur hier existiert.
+Sie liest ihre Ergebnisse als JSON vom `/api/locations/search` Endpoint und generiert das fertige HTML.
+
+Weiterhin existiert eine `cookie.js` die dafür sorgt, dass beim ersten Besuch der Seite eine Cookie-Warnung eingeblendet wird.  
+
+#### Sass
+Wir verwenden für unser Layout eine mittels SASS modifizierte Version von Bootstrap.
+Weiterhin sind einige spezifische Klassen in der `style.css` definiert.
+Für erhöhte effizient werden nicht verwendete Klassen mittels [PurgeCSS](https://purgecss.com) aus den Dateien entfernt.
+
 ### Models
 Es existiert ein Model für alle für uns relevanten Tabellen in der Datenbank.
 Wir verwenden grundsätzlich Models zum Datenbankzugriff, um flexibel bezüglich des dahinter-stehenden Datenbanksystems zu sein.
@@ -60,10 +83,6 @@ Die Eingabe-Validierung von Formulardaten ist nicht in den Controllern selber, s
 
 Die gesamte Datenbank wird mittels Migrationen erstellt.
 Es existieren Seeder und Factories, mittels derer die Datenbank zu Test- und Vorführzwecken mit Beispieldaten bespielt werden kann.
-
-### Nutzer Eingaben
-Nutzereingaben werden mittels in eigenen Requests definierten Regeln validiert.
-Bei fehlerhaften Eingaben wird der Nutzer mittels Fehlermeldungen auf diese hingewiesen. 
 
 ### Authentifizierung
 Wir verwenden die bereits von Laravel zur Verfügung gestellte Authentifizierung.
