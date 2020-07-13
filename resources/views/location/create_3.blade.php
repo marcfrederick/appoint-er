@@ -50,7 +50,7 @@
 
                             <div class="form-group row">
                                 <div class="col-md-4 text-md-right">{{__('location.img')}}</div>
-                                <div class="col-md-6"> <img src= "{{ $image_path }}" width="200px"/></div>
+                                <div class="col-md-6"> <img src= "{{ $path }}" width="200px"/></div>
                             </div>
 
                             <div class="form-group row mb-0">

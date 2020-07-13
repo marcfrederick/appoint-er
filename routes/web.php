@@ -28,6 +28,7 @@ Route::prefix('locations')->name('locations.')->group(function () {
     Route::get('search', 'LocationController@search')->name('search');
     Route::get('create_1', 'LocationController@create_1')->name('create_1');
     Route::get('create_2', 'LocationController@create_2')->name('create_2');
+    Route::post('create_2', 'LocationController@create_2')->name('create_2');
     Route::get('create_3', 'LocationController@create_3')->name('create_3');
 });
 Route::resource('locations', 'LocationController')->except(['create']);

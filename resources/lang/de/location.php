@@ -29,5 +29,5 @@ return [
     'street' => 'Straße',
     'time' => 'Uhrzeit',
     'title' => 'Titel',
-
+    'image' => 'Bild',
 ];
