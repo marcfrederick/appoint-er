@@ -25,8 +25,52 @@
             </div>
         @endcanany
 
-        <h1 class="display-4">{{ $location->title  }}</h1>
-        <p class="lead">{{ $location->description }}</p>
+        @if($location->images->first() !== null)
+            <img src="{{$location->images->first()->src }}"
+                 alt="img of {{ $location->title }}" style="width: 400px"/>
+            @endif
+
+
+            <h1 class="display-4">{{ $location->title  }}</h1>
+            <p class="lead">{{ $location->description }}</p>
+
+        @isCurrentUser($location->user)
+            <h2>{{ __('location.my_bookings') }}</h2>
+            @if(!$location->futureBookedSlots->isEmpty())
+                <table class="table table-striped">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">{{ __('location.date') }}</th>
+                        <th scope="col">{{ __('location.time') }}</th>
+                        <th scope="col">{{ __('location.duration') }}</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($location->futureBookedSlots as $slot)
+                            <tr>
+                                <td>{{ date_format(date_create($slot->start), 'Y-m-d') }}</td>
+                                <td>{{ date_format(date_create($slot->start), 'H:i') }}</td>
+                                <td>{{ $slot->duration }} {{ trans_choice('location.minute', $slot->duration) }}</td>
+                                <td class="float-right">
+                                    <form class="form-inline" method="POST"
+                                          action="{{ route('slots.destroy', ['location' => $location, 'slot' => $slot]) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                class="btn btn-danger">{{ __('location.slot_remove') }}</button>
+                                    </form>
+                                </td>
+                            </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @else
+                <div class="alert alert-info">
+                    {{ __('location.no_bookings') }}
+                </div>
+            @endif
+        @endif
 
         <h2>{{ trans_choice('location.slot', $location->futureAvailableSlots->count()) }}</h2>
         @if($location->futureAvailableSlots->isNotEmpty())

@@ -26,7 +26,8 @@ class LocationCreateInfoRequest extends FormRequest
         return [
             'title' => 'required|string|max:191',
             'description' => 'required|string',
-            'category' => 'required|string'
+            'category' => 'required|string',
+            'image' => 'required|image',
         ];
     }
 }

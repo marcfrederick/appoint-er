@@ -37,8 +37,17 @@ class Location extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Locationimg>
+     */
+    public function images()
+    {
+        return $this->hasMany(Locationimg::class);
+    }
+
+    /**
      * @param  String $categoryName
      * @return void
+     * @throws \Throwable
      */
     public function addCategoryByName(string $categoryName)
     {
@@ -52,7 +61,7 @@ class Location extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<CategoryLocation>
      */
     public function categoryLocation()
     {
@@ -75,6 +84,17 @@ class Location extends Model
         return $this->slots()
             ->whereDate('start', '>', now())
             ->doesntHave('booking')
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection<Slot>
+     */
+    public function getFutureBookedSlotsAttribute()
+    {
+        return $this->slots()
+            ->whereDate('start', '>', now())
+            ->has('booking')
             ->get();
     }
 }

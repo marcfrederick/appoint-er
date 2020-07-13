@@ -6,11 +6,14 @@ namespace App\Http\Controllers;
 use _HumbugBox69342eed62ce\Nette\Neon\Exception;
 use App\Address;
 use App\Category;
+use App\CategoryLocation;
 use App\Http\Requests\LocationCreateAddressRequest;
 use App\Http\Requests\LocationCreateInfoRequest;
 use App\Location;
+use App\Locationimg;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
@@ -304,15 +307,22 @@ class LocationController extends Controller
      * @param  LocationCreateInfoRequest $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Throwable
      */
     public function create_2(LocationCreateInfoRequest $request)
     {
         $this->authorize('create', Location::class);
 
+        /** @var UploadedFile|null $file */
+        $file = $request->file('image');
+        throw_if(is_null($file), new Exception('Missing file'));
+        $path = $file->store('locationimages', 'public');
+
         Session::put('location_info', [
             'title' => $request->get('title'),
             'description' => $request->get('description'),
             'category' => $request->get('category'),
+            'path' => '/storage/' . $path
         ]);
 
         return response()->view('location.create_2', ['countryCodes' => self::COUNTRY_CODES]);
@@ -358,6 +368,7 @@ class LocationController extends Controller
     {
         $data = Session::remove('location_data');
         $rules = array_merge((new LocationCreateInfoRequest)->rules(), (new LocationCreateAddressRequest())->rules());
+        unset($rules['image']);  // Image is not in the request but passed through the Session.
         \Validator::validate($data, $rules);
 
         $location = Location::create([
@@ -371,7 +382,18 @@ class LocationController extends Controller
             ])->id,
             'user_id' => $request->user()->id,
         ]);
-        $location->addCategoryByName($data['category']);
+
+        Locationimg::create([
+            'src' => $data['path'],
+            'location_id' => $location->id,
+        ]);
+
+        /** @var Category $category */
+        $category = Category::firstWhere('name', '=', $data['category']);
+        CategoryLocation::create([
+            'location_id' => $location->id,
+            'category_id' => $category->id,
+        ]);
 
         Log::info('Stored location', ['location_id' => $location]);
 

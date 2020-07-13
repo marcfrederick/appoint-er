@@ -1,5 +1,6 @@
 function makeResultCardHTML(result) {
     const targetURL = `/locations/${result.id}`;
+    console.log(result)
     return `
 <div class="card">
     <div class="card-body">
