@@ -36,6 +36,9 @@ class Location extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Locationimg>
+     */
     public function images()
     {
         return $this->hasMany(Locationimg::class);
@@ -58,7 +61,7 @@ class Location extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<CategoryLocation>
      */
     public function categoryLocation()
     {
