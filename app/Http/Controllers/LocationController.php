@@ -13,6 +13,7 @@ use App\Location;
 use App\Locationimg;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
@@ -311,13 +312,16 @@ class LocationController extends Controller
     {
         $this->authorize('create', Location::class);
 
-        $path = $request->file('image')->store('locationimages','public');
+        /** @var UploadedFile|null $file */
+        $file = $request->file('image');
+        throw_if(is_null($file), new Exception('Missing file'));
+        $path = $file->store('locationimages', 'public');
 
         Session::put('location_info', [
             'title' => $request->get('title'),
             'description' => $request->get('description'),
             'category' => $request->get('category'),
-            'path' => '/storage/'.$path
+            'path' => '/storage/' . $path
         ]);
 
         return response()->view('location.create_2', ['countryCodes' => self::COUNTRY_CODES]);

@@ -3,16 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class Locationimg extends Model
 {
-    protected $fillable = [
-        'location_id',
-        'src'
-    ];
+    /** @var array<string> */
+    protected $fillable = ['location_id', 'src'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Location>
+     */
     public function locations()
     {
         return $this->belongsTo(Location::class);
