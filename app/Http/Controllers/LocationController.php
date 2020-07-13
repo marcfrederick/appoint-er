@@ -307,6 +307,7 @@ class LocationController extends Controller
      * @param  LocationCreateInfoRequest $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Throwable
      */
     public function create_2(LocationCreateInfoRequest $request)
     {

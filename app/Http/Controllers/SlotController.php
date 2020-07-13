@@ -66,8 +66,10 @@ class SlotController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  Location $location
      * @param  \App\Slot $slot
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Exception
      */
     public function destroy(Location $location, Slot $slot)
