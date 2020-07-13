@@ -21,6 +21,7 @@ return [
     'minute' => 'Minute|Minuten',
     'next' => 'Weiter',
     'no_slots' => 'Es sind momentan keine Termine verfügbar',
+    'no_bookings' => 'Es sind momentan keine Termine gebucht',
     'owner' => 'Eigentümer',
     'postcode' => 'Postleitzahl',
     'recently_updated' => 'Kürzlich geändert',
@@ -30,4 +31,5 @@ return [
     'time' => 'Uhrzeit',
     'title' => 'Titel',
     'image' => 'Bild',
+    'my_bookings' => 'Buchungen bei mir'
 ];

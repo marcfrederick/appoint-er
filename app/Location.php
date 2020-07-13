@@ -86,4 +86,15 @@ class Location extends Model
             ->doesntHave('booking')
             ->get();
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection<Slot>
+     */
+    public function getFutureBookedSlotsAttribute()
+    {
+        return $this->slots()
+            ->whereDate('start', '>', now())
+            ->has('booking')
+            ->get();
+    }
 }

@@ -21,6 +21,7 @@ return [
     'minute' => 'minute|minutes',
     'next' => 'Next',
     'no_slots' => 'There are currently no slots available',
+    'no_bookings' => 'There are currently no bookings',
     'owner' => 'Owner',
     'postcode' => 'Postcode',
     'recently_updated' => 'Recently updated',
@@ -29,5 +30,6 @@ return [
     'street' => 'Street',
     'time' => 'Time',
     'title' => 'Title',
-    'image' => 'Image'
+    'image' => 'Image',
+    'my_bookings' => 'Bookings at my location'
 ];

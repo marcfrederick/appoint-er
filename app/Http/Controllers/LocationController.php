@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use _HumbugBox69342eed62ce\Nette\Neon\Exception;
 use App\Address;
 use App\Category;
 use App\CategoryLocation;
@@ -12,6 +11,7 @@ use App\Http\Requests\LocationCreateInfoRequest;
 use App\Location;
 use App\Locationimg;
 use App\Providers\RouteServiceProvider;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Log;
