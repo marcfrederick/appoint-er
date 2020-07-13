@@ -41,6 +41,22 @@ der einzelnen Orte.
 * Pagination: ???
 * Partials: Hier befinden sich weitere Teile die öfters Vorkommen wie der Header, Footer, Cookie-Meldung und die einzelnen Karten
 
+Views sind für alle Bildschirmgrößen optimiert (Responsive Design).
+In der Menüleiste ist das passend zur restlichen Seite gestaltete Logo inkludiert.
+Es sind Favicons in allen gängigen Formaten bereitgestellt. 
+
+Wir haben die in den Views vorkommende Logik so weit wie möglich minimiert.
+Dies haben wir durch das Auslagern von Logik in Models (bspw. `Location::getFutureAvailableSlotsAttribute`) und eigene Blade-Erweiterungen erreicht.
+
+Auf den Views können Benachrichtigungen angezeigt werden.
+Dies ist mittels des `toasts` Stack in der `Session` implementiert.
+Bei jedem Neuladen der Seite wird dieser geprüft und alle darin enthaltenen Nachrichten angezeigt.
+
+#### Lokalisierung
+Die Website ist komplett in Deutsch und Englisch lokalisiert.
+Mittels der `Locale` Middleware wird automatisch die Lokalisierung basierend auf der Präferenz des Users gewählt (Fallback Englisch).
+Die Lokalisierungen sind in `/resources/lang/*` definiert.
+
 ### Mix
 JavaScript und CSS wird mittels Laravel Mix aus den dateien in `resources/js` und `resources/scss` kompiliert. 
 
