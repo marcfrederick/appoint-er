@@ -317,7 +317,7 @@ class LocationController extends Controller
             'title' => $request->get('title'),
             'description' => $request->get('description'),
             'category' => $request->get('category'),
-            'path' => '/locationimages/'.$path
+            'path' => '/storage/'.$path
         ]);
 
         return response()->view('location.create_2', ['countryCodes' => self::COUNTRY_CODES]);

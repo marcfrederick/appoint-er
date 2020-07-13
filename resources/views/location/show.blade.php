@@ -27,7 +27,7 @@
 
         @if($location->images->first() !== null)
             <img src="{{$location->images->first()->src }}"
-                 alt="img of {{ $location->title }}"/> <!-- TODO: size -->
+                 alt="img of {{ $location->title }}" style="width: 400px"/>
             @endif
 
 
