@@ -384,13 +384,25 @@ a > code {
   margin-left: -15px;
 }
 
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.no-gutters > .col,
+.no-gutters > [class*=col-] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
 
 .col-md-8,
 .col-md-6,
 .col-md-4,
 .col-sm-8,
 .col-sm-4,
-.col {
+.col,
+.col-auto {
   position: relative;
   width: 100%;
   padding-right: 15px;
@@ -401,6 +413,12 @@ a > code {
   flex-basis: 0;
   flex-grow: 1;
   min-width: 0;
+  max-width: 100%;
+}
+
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
   max-width: 100%;
 }
 
@@ -1391,6 +1409,21 @@ a.btn.disabled {
   border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
 }
 
+.card-img {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.card-img {
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px);
+}
+
+.card-img {
+  border-bottom-right-radius: calc(0.25rem - 1px);
+  border-bottom-left-radius: calc(0.25rem - 1px);
+}
+
 .card-columns .card {
   margin-bottom: 0.75rem;
 }
@@ -1741,6 +1774,10 @@ button.bg-primary:focus {
   margin-left: 0.5rem !important;
 }
 
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
 .mt-4 {
   margin-top: 1.5rem !important;
 }
@@ -1751,6 +1788,10 @@ button.bg-primary:focus {
 
 .mt-5 {
   margin-top: 3rem !important;
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
 }
 
 .p-0 {
