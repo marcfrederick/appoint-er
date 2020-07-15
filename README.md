@@ -144,4 +144,4 @@ Zusätzlich finden sich Grafiken und Bilder auf der Homepage und bei den verschi
 Wir haben unsere Webapplikation responsive gestaltet um mobilen Nutzern eine angenehme Erfahrung zu ermöglichen. \
 Durch verschiedenste Links ist es möglich sich durch die Seite zu navigieren. Über ein Nutzer zu einem Ort zu einer Kategorie zu einem anderen Ort wieder zu einem anderen Nutzer. \
 Unsere Seite kann direkt via Twitter geteilt werden. \
-Wir benutzen HTTPS, eine Sitemap und Meta Tags. \
+Wir benutzen HTTPS, eine Sitemap und Meta Tags.
