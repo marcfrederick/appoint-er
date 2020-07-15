@@ -35,9 +35,9 @@ View der einzelnen Kategorien.
 * Layouts: Hier ist das Layout der Webapplikation. Alle anderen Views werden in als Content in diese View geladen.
 * Location: Die Views zum Erzeugen von Orten sowie die View zum Bearbeiten, die View für die Übersicht aller Orte und die View zum Anzeigen
 der einzelnen Orte.
-* Pagination: ???
+* Pagination: Custom Bootstrap paginators based on the default but centered on the page instead if floating to the left. 
 * Partials: Hier befinden sich weitere Teile die öfters Vorkommen wie der Header, Footer, Cookie-Meldung und andere wiederverwendete Seitenausschnitte.
-* Sitemap: ???
+* Sitemap: Dynamically generates a sitemap for the page.
 * Slot: In diesem Ordner ist die View zur Erzeugung eines neuen Zeitslots, also wann Termine gebucht werden können.
 * User: Alle Nutzerrelatierten Views sind hier.
 
