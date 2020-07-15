@@ -12,11 +12,7 @@
 * Admin kann alle Nutzer sehen.
 * Termine für den eigenen Ort einsehen.
 
-
-
-
 ## Wow-Faktor der Applikation
-
 Appoint.er hat zwei Suchen, eine im Header der Seite, die die direkte Suche von Orten ermöglicht.
 Zusätzlich ist eine zweite Suche im unteren Teil der Homepage vorhanden, die bei keiner Eingabe einen Ausschnitt der vorhandenen Orte zeigt
 und bei einer Eingabe oder Kategorieauswahl die angezeigten Orte in Echtzeit anpasst.
@@ -145,3 +141,10 @@ Wir haben unsere Webapplikation responsive gestaltet um mobilen Nutzern eine ang
 Durch verschiedenste Links ist es möglich sich durch die Seite zu navigieren. Über ein Nutzer zu einem Ort zu einer Kategorie zu einem anderen Ort wieder zu einem anderen Nutzer. \
 Unsere Seite kann direkt via Twitter geteilt werden. \
 Wir benutzen HTTPS, eine Sitemap und Meta Tags.
+
+## Technische Details
+Bei der Entwicklung haben wir einige Tools verwendet:
+* [PHPStan](https://github.com/phpstan/phpstan) (Mit der [Larastan](https://github.com/nunomaduro/larastan) Erweiterung)
+* [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper)
+* [Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar)
+* [GitHub Actions](https://github.com/features/actions)
