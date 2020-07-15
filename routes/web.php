@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/', 'IndexController@show')->name('home');
 Route::view('/imprint', 'imprint')->name('imprint');
 Route::view('/privacy', 'privacy')->name('privacy-policy');
+Route::view('/contact', 'contact')->name('contact');
 
 // locations
 Route::prefix('locations')->name('locations.')->group(function () {
