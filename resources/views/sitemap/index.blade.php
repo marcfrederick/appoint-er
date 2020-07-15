@@ -21,6 +21,21 @@
         <lastmod>2020-06-30T12:56:39+00:00</lastmod>
         <priority>0.80</priority>
     </url>
+    <url>
+        <loc>http://appoint-er-unstable.herokuapp.com/imprint</loc>
+        <lastmod>2020-06-30T12:56:39+00:00</lastmod>
+        <priority>0.50</priority>
+    </url>
+    <url>
+        <loc>http://appoint-er-unstable.herokuapp.com/privacy</loc>
+        <lastmod>2020-06-30T12:56:39+00:00</lastmod>
+        <priority>0.50</priority>
+    </url>
+    <url>
+        <loc>http://appoint-er-unstable.herokuapp.com/contact</loc>
+        <lastmod>2020-06-30T12:56:39+00:00</lastmod>
+        <priority>0.50</priority>
+    </url>
 
     <sitemap>
         <loc>{{ Config::get('app.url') }}/sitemap/locations</loc>
