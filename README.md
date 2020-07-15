@@ -1,4 +1,4 @@
-![Laravel](https://github.com/appoint-er/htwg-web-tech-dynamic/workflows/Laravel/badge.svg?branch=master)
+# appoint.er
 
 ## Zusammenfassung der Beschreibung der Funktionalität
 
