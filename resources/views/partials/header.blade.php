@@ -49,33 +49,39 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">
+                                <i class="fa fa-user" aria-hidden="true"></i>
                                 {{ __('partials.header.profile') }}
                             </a>
 
                             <a class="dropdown-item" href="{{ route('locations.create_1') }}">
+                                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
                                 {{ __('partials.header.new_location') }}
                             </a>
 
                             @can('create', \App\Category::class)
                                 <a class="dropdown-item" href="{{ route('categories.create') }}">
+                                    <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                                     {{ __('partials.header.new_category') }}
                                 </a>
                             @endcan
 
                             @can('viewAny', \App\User::class)
                                 <a class="dropdown-item" href="{{ route('users.index') }}">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
                                     {{ __('partials.header.all_users') }}
                                 </a>
                             @endcan
 
                             @can('viewAny', \App\ContactRequest::class)
                                 <a class="dropdown-item" href="{{ route('contact-requests.index') }}">
+                                    <i class="fa fa-mail-reply" aria-hidden="true"></i>
                                     {{ __('contact.requests') }}
                                 </a>
                             @endcan
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
                                 {{ __('partials.header.logout') }}
                             </a>
 
