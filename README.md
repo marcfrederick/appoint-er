@@ -142,6 +142,10 @@ Durch verschiedenste Links ist es möglich sich durch die Seite zu navigieren. �
 Unsere Seite kann direkt via Twitter geteilt werden. \
 Wir benutzen HTTPS, eine Sitemap und Meta Tags.
 
+### Keywords
+Bei unseren Keywords haben wir uns auf "appointments", "reservations", "bookings", "schedule", "online", und verschiedene Kombinationen dieser konzentriert.
+Wir haben diese gewählt, da sie unsere Website gut beschreiben und mit hoher Wahrscheinlichkeit von potentiellen Kunden verwendet werden.
+
 ## Technische Details
 Bei der Entwicklung haben wir einige Tools verwendet:
 * [PHPStan](https://github.com/phpstan/phpstan) (Mit der [Larastan](https://github.com/nunomaduro/larastan) Erweiterung)
