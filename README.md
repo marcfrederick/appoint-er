@@ -148,3 +148,15 @@ Bei der Entwicklung haben wir einige Tools verwendet:
 * [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper)
 * [Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar)
 * [GitHub Actions](https://github.com/features/actions)
+
+## Google PageSpeed Insights
+Wir haben die Performance unserer Seite mittels Google PageSpeed Insights analysiert.
+Die größten Performance-Einbußen machen wir in den Bereichen "Time to Interactive" und "Speed Index".
+Diese erklären sich aus der Startup-time der Dynos unseres kostenfreien Heroku Accounts.
+
+Um diese wie auf der PageSpeed Insights Seite vorgeschlagen zu optimieren, haben wir versucht Kompression mittels `gzip` zu aktivieren.
+Dafür hatten wir von dem Standard Apache Webserver auf nginx gewechselt, und diesen entsprechend konfiguriert (Siehe 5170a857216e33476be6ab6687b14667e09500df).
+Da wir SSL mit dem nginx nicht zum Laufen gebracht haben, sind wir allerdings zurück zum Apache Webserver gewechselt.
+
+Weiterhin haben wir um den PageSpeed Score zu verbessern ungenutztes CSS aus unserer Website entfernt, indem wir Laravel Mix um [PurgeCSS](https://github.com/spatie/laravel-mix-purgecss) erweitert haben.
+Dies verbesserte den Score immerhin marginal, für eine wirkliche Verbesserung wäre allerdings ein anderer Host notwendig.
