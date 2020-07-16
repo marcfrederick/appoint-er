@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/locations/search', 'LocationController@jsonSearch')
     ->name('locations.ajax-search');
+Route::get('contact-requests/search', 'ContactRequestController@jsonSearch')
+    ->name('contact-requests.ajax-search');

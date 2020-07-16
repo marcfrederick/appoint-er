@@ -7,6 +7,7 @@ use App\Http\Requests\ContactRequestRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class ContactRequestController extends Controller
 {
@@ -55,5 +56,23 @@ class ContactRequestController extends Controller
 
         Session::push('toasts', trans('contact.message_sent'));
         return response()->redirectTo(RouteServiceProvider::HOME);
+    }
+
+    /**
+     * @param  Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function jsonSearch(Request $request)
+    {
+        $this->authorize('viewAny', ContactRequest::class);
+
+        $query = $request->input('query');
+        $pattern = sprintf("'%%%s%%'", Str::upper($query));
+        $result = ContactRequest::whereRaw('UPPER(title) LIKE ' . $pattern)
+            ->orWhereRaw('UPPER(message) LIKE ' . $pattern)
+            ->get();
+
+        return response()->json($result);
     }
 }
