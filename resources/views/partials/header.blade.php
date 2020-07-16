@@ -68,6 +68,12 @@
                                 </a>
                             @endcan
 
+                            @can('viewAny', \App\ContactRequest::class)
+                                <a class="dropdown-item" href="{{ route('contact-requests.index') }}">
+                                    {{ __('contact.requests') }}
+                                </a>
+                            @endcan
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('partials.header.logout') }}
