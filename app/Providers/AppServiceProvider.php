@@ -44,7 +44,9 @@ class AppServiceProvider extends ServiceProvider
         Location::deleting(function (Location $l) {
             foreach ($l->images as $image) {
                 $path = preg_replace('#^/storage/#', 'public/', $image->src);
-                \Storage::delete($path);
+                if (!is_null($path)) {
+                    \Storage::delete($path);
+                }
             }
         });
     }
