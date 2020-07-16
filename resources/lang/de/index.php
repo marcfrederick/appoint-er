@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 return [
     'slogan' => 'Das Terminvermittlungsportal für den modernen Alltag.',
-    'mission' => 'Als Terminvermittlungsportal für den modernen Alltag ist es unsere Aufgabe Termine schnell und unkompliziert zu vermitteln. Suchen Sie nach Terminen für eine Kategorie oder einen spezifischen Anbieter und buchen Sie diesen direkt hier online.',
+    'mission' => 'Als Terminvermittlungsportal für den modernen Alltag ist es unsere Aufgabe Termine schnell und unkompliziert zu vermitteln. Suchen Sie nach Terminen für eine Kategorie oder einen spezifischen Anbieter und buchen Sie diesen direkt hier online. Wir helfen Ihnen den Perfekten Termin für Ihr Leben und nach ihren Wünschen zu finden. Anstatt eines Anrufes und darauf folgenden Warteschlange ist ihr Wunschtermin nur einn klick entfernt.',
     'about_us' => [
         'title' => 'Über uns',
         'feat_compare' => 'Finden Sie schneller einen Termin indem Sie verschiedene Anbieter vergleichen',
